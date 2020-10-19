@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+	<head> 
 		<meta charset="utf-8" />
 		<title><?php echo $judul; ?> | salestrax</title>
 		<meta name="description" content="" />
