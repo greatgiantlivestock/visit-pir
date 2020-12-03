@@ -121,6 +121,123 @@ class Rencana extends CI_Controller {
 		}	
 	}
 
+	public function create_header() {
+		date_default_timezone_set('Asia/Jakarta');
+		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
+												JOIN trx_rencana_master ON proses_lama.id_rencana_header=trx_rencana_master.id_rencana_header")->row();
+		if($get_id == null){
+			$no_akhir = "R0000000000.000";
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+		}
+		$tanggal = "R".$this->input->post("id_user").date('ymd')."."; 
+		$in['tanggal_penetapan'] = date('Y-m-d');
+		$in['tanggal_rencana'] = $this->input->post("date_from");
+		$in['keterangan'] = $this->input->post("keterangan");
+		$in['id_user_input_rencana'] = $this->input->post("id_user");
+		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
+		$in['active'] = "1";
+		
+		$this->db->insert("trx_rencana_master",$in);
+		
+		// $id_rencana_detail = $this->input->post("id_rencana_detail");
+		// $id_product = $this->input->post("id_product");
+		// $qty1 = $this->input->post("jumlah_order");
+		// $data_penjualan = $this->App_model->get_stock_availabel($id_rencana_detail,$id_product);
+		// $qcount = $this->App_model->get_count_stock_availabel($id_rencana_detail,$id_product);
+		// $qid_cst = $this->db->query("SELECT id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'")->row();
+		// $in1['tanggal_update'] = date('Y-m-d H:i:s');
+		// $in1['id_customer'] = $qid_cst->id_customer;
+		// $in1['id_product'] = $this->input->post("id_product");
+		// if($qcount->jml==0){
+		// 	$in1['qty'] = 0-$qty1;
+		// }else{
+		// 	$in1['qty'] = $data_penjualan->qty-$qty1;
+		// }
+		// $this->db->insert("stock_customer",$in1);
+		$response = array('error' => 'False');
+		echo json_encode($response);	
+	}
+
+	public function create_detail() {
+		date_default_timezone_set('Asia/Jakarta');
+		$id_rencana_header=$this->input->post("id_rencana_header");
+		$id_karyawan=$this->input->post("id_karyawan");
+		$id_customer=$this->input->post("id_customer");
+		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
+		$get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		if($get_id == null){
+			$response = array('error' => 'True');
+			echo json_encode($response);
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+			$in['id_rencana_header'] = $id_rencana_header;
+			$in['id_kegiatan'] = "26";
+			$in['id_customer'] = $id_customer;
+			$in['id_karyawan'] = $id_karyawan;
+			$in['status_rencana'] = "0";
+			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$get_customer->kode_customer;
+			$in['active'] = "1";
+			$in['lock'] = "0";
+			
+			$this->db->insert("trx_rencana_detail",$in);
+			$response = array('error' => 'False');
+			echo json_encode($response);
+		}	
+	}
+
+	public function create_header_urgent() {
+		date_default_timezone_set('Asia/Jakarta');
+		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
+												JOIN trx_rencana_master ON proses_lama.id_rencana_header=trx_rencana_master.id_rencana_header")->row();
+		if($get_id == null){
+			$no_akhir = "U0000000000.000";
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+		}
+		$tanggal = "U".$this->input->post("id_user").date('ymd')."."; 
+		$in['tanggal_penetapan'] = date('Y-m-d');
+		$in['tanggal_rencana'] = $this->input->post("date_from");
+		$in['keterangan'] = $this->input->post("keterangan");
+		$in['id_user_input_rencana'] = $this->input->post("id_user");
+		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
+		$in['active'] = "1";
+		$in['urgent'] = "1";
+		$in['aproved'] = "1";
+		
+		$this->db->insert("trx_rencana_master",$in);
+		$response = array('error' => 'False');
+		echo json_encode($response);	
+	}
+
+	public function create_header_edit() {
+		date_default_timezone_set('Asia/Jakarta');
+		$in['active'] = "2";
+		$where['id_rencana_header'] = $this->input->post('id_rencana_header');
+		$this->db->update("trx_rencana_master",$in,$where);
+		$this->db->update("trx_rencana_detail",$in,$where);
+		
+		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
+												JOIN trx_rencana_master ON proses_lama.id_rencana_header=trx_rencana_master.id_rencana_header")->row();
+		if($get_id == null){
+			$no_akhir = "R0000000000.000";
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+		}
+		$tanggal = "R".$this->input->post("id_user").date('ymd')."."; 
+		$in['tanggal_penetapan'] = date('Y-m-d');
+		$in['tanggal_rencana'] = $this->input->post("date_from");
+		$in['keterangan'] = $this->input->post("keterangan");
+		$in['id_user_input_rencana'] = $this->input->post("id_user");
+		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
+		$in['active'] = "1";
+		$in['id_revisi_from'] = $this->input->post('id_rencana_header');
+		
+		$this->db->insert("trx_rencana_master",$in);
+		$response = array('error' => 'False');
+		echo json_encode($response);	
+	}
+
 	public function index_edit($id="",$idt="") {
 		if($this->session->userdata('id_role') == "1" || $this->session->userdata('id_role') == "3" || $this->session->userdata('id_role') == "5" ) {
 			$d['judul'] = "Rencana";			

@@ -67,6 +67,37 @@ class checkin extends CI_Controller {
 		$upd['status_rencana'] = "1";
 		$this->db->update("trx_rencana_detail",$upd,$where);
 	}
+	public function addNewCheckin() {
+		date_default_timezone_set('Asia/Jakarta');
+		$id = $this->input->post("id_rencana_detail");
+		$in['tanggal_checkin'] = date('Y-m-d H-i-s');
+		$in['nomor_checkin'] = $id.date("ymdhis");
+		$in['id_user'] = $this->input->post("id_user");
+		$in['id_rencana_detail'] = $id;
+		$qData = $this->db->query("SELECT id_rencana_header,kode_customer FROM trx_rencana_detail JOIN mst_customer
+								ON trx_rencana_detail.id_customer=mst_customer.id_customer WHERE id_rencana_detail='$id'")->row();
+		$in['id_rencana_header'] = $qData->id_rencana_header;
+		$in['kode_customer'] = $qData->kode_customer;
+		$in['lats'] = $this->input->post("lats");
+		$in['longs'] = $this->input->post("longs");
+		$in['foto'] = $this->input->post("foto");
+		$in['prospect'] = 0;
+		// $lats=$this->input->post('lats');
+		// $longs=$this->input->post('longs');
+		// $id_user=$this->input->post('id_user');
+		// $address= $this->App_model->getaddress($lats,$longs);
+		// if($address!=0){
+		// 	echo $address;
+		// }else{
+		// 	echo "Belum ada alamat";
+		// }
+		$in['jarak'] = 0;
+		// $in['alamat_gps'] = $address;
+		$this->db->insert("trx_checkin",$in);
+		$where['id_rencana_detail'] = $id;
+		$upd['status_rencana'] = "1";
+		$this->db->update("trx_rencana_detail",$upd,$where);
+	}
 	public function updateStock() {
 		date_default_timezone_set('Asia/Jakarta');
 		$in['date_insert'] = date('Y-m-d H:i:s');
