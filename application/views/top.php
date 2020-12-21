@@ -227,7 +227,7 @@
 					</a>
 					<a href="<?php echo base_url(); ?>Rekap_salesman">
 						<i class="menu-icon  fa fa-map-marker"></i>
-						<span class="menu-text"> Lokasi Kunjungan </span>
+						<span class="menu-text"> Rekap Kunjungan </span>
 					</a>
 					<a onclick="document.getElementById('id01').style.display='block'" href="#" style="background:green">
 						<small>
