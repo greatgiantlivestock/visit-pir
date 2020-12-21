@@ -1,31 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Customer extends CI_Controller {
+class Aproval extends CI_Controller {
 
 	public function index($id="") {
 		if($this->session->userdata('id_role') == "1" || $this->session->userdata('id_role') == "4") {
-			$d['judul'] = "Data Petani";			
-			if($id != "") { 
-				$d['id_customer'] = $id;
-				$get_id = $this->db->query("SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr");
-				if($get_id->num_rows() > 0) {
+			$d['judul'] = "Aproval Kunjungan";
 					$d['tipe'] = "edit";
 					$d['color'] = 'style="background:#ffffe1;"';
 					$d['btn_batal'] = '<a class="btn btn-xs btn-default" style="margin-left: 40px;" href="'.base_url().'customer">
 										<i class="ace-icon fa fa-undo"></i>
 										<span class="bigger-110">Batal</span></a>';
-					foreach($get_id->result() as $data) {
-						$d['kode_customer'] = $data->lifnr;
-						$d['nama_customer'] = $data->name1;
-						$d['alamat_customer'] = $data->desa;
-						$d['no_hp'] = $data->veraa_user;
-						$d['nama_usaha'] = $data->veraa_user;
-						$d['combo_wilayah'] = $this->App_model->get_combo_wilayah_id(3020);
-						$d['lats'] = $data->lats;
-						$d['longs'] = $data->longs;
-					}
-					$d['customer'] = $this->App_model->get_customer($id);
+					$d['customer'] = $this->App_model->get_aproval();
 					$d['btn_batal_edit'] = '';
 					
 					$d['btn_name'] = "Ubah";
@@ -34,39 +20,9 @@ class Customer extends CI_Controller {
 
 					$d['readonly'] = '';
 
-				} else {
-					redirect("error");
-				}
-			} else {
-				$d['tipe'] = "add";
-				$d['color'] = "";
-				$d['btn_batal'] = '<a class="btn btn-standar" style="margin-left: 40px;" href="'.base_url().'customer">
-									<i class="ace-icon fa fa-undo bigger-110"></i>Batal</a>';
-				$d['btn_nota'] = '<button class="btn btn-success"><i class="ace-icon fa fa-check bigger-110"></i>Simpan</button>';
-				$d['btn_delete'] = '<button class="btn btn-danger"><i class="ace-icon fa fa-trash bigger-110"></i>Hapus</button>';
-				$d['nomor_rencana'] = '';
-				$d['kode_customer'] = '';
-				$d['nama_customer'] = '';
-				$d['alamat_customer'] = '';
-				$d['no_hp'] = '';
-				$d['customer'] = $this->App_model->get_customer();
-				
-				$d['disable'] = 'disabled';
-				$d['readonly'] = 'readonly';
-				$d['id_customer'] = '';
-				$d['nama_usaha'] = '';
-				$d['lats'] = '';
-				$d['longs'] = '';
-
-				$d['combo_wilayah'] = $this->App_model->get_combo_wilayah_id();
-				$d['combo_status_customer'] = $this->App_model->get_combo_status_customer();
-				$d['btn_name'] = "Tambah Kegiatan";
-				$d['btn_batal_edit'] = '';
-			}
-	
 			$this->load->view('top',$d);
 			$this->load->view('menu');
-			$this->load->view('customer/customer_table');
+			$this->load->view('aproval/aproval_table');
 			$this->load->view('bottom');
 		} else {
 			redirect("login");
@@ -155,6 +111,51 @@ class Customer extends CI_Controller {
 			}
 			
 			$this->load->view("barcode/barcode_print");
+		}
+	}
+
+	public function get_aproval() {
+		$id_rencana_header = $this->input->post("id_rencana_header");
+		$no = 1;	
+		$get = $this->db->query("SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN 
+							(SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr)AS petani ON trd.id_customer=petani.lifnr WHERE urgent='0' AND trm.id_rencana_header='$id_rencana_header'");
+		echo '<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th><input type="checkbox" onClick="all_check(this)" /> <span class="lbl"></span></th>
+							<th>PPL</th>
+							<th>Nama Petani</th>
+							<th>Alamat</th>
+						</tr>
+					</thead>
+					<tbody>';
+		foreach($get->result_array() as $data) { 
+					echo '<tr>
+							<td><input class="check" type="checkbox" name="ck_id_detail[]" value="'.$data['id_rencana_detail'].'" checked>
+								<span class="lbl"></span>
+							</td>
+							<td>'.$data['veraa_user'].'</td>
+							<td>'.$data['name1'].'</td>
+							<td>'.$data['desa'].'</td>
+						  </tr>';
+		$no++; }
+		echo		'</tbody>
+				</table>';	
+	}
+
+	public function save_aproval() {
+		if($this->session->userdata('id_role') == "4") {
+			$id_rencana_header = $this->input->post("id_rencana_header");
+			$in['aproved'] = '1';
+			$in['approved_by'] = $this->session->userdata("id_user");
+			$this->db->update("trx_rencana_master",$in,array('id_rencana_header' => $id_rencana_header));				
+			foreach($this->input->post("ck_id_detail") as $data_id) {
+				$this->db->update("trx_rencana_detail",array('active' => '2'),array('id_rencana_detail' => $data_id));
+			}
+			$this->session->set_flashdata("success","Rencana berhasil di aprove.");
+			redirect("Aproval");	
+		} else {
+			redirect("login");
 		}
 	}
 

@@ -22,7 +22,7 @@
 	}
 </style>
 <div class="w3-container">
-  <h2>Detail Aktifitas Kunjungan Sales/MD</h2>
+  <h2>Detail Aktifitas Kunjungan PPL</h2>
 
   <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Fade In Modal</button> -->
 
@@ -51,7 +51,7 @@
 			    
 				<?php }else{?>
 				    <?php $data_= $detail_visit->row();?>
-    				<?php echo "Sales/MD : "; echo $data_->nama_karyawan; ?>
+    				<?php echo "PPL : "; echo $data_->nama_karyawan; ?>
     
     				<a style="float:right;margin-right:10px;" class="btn btn-xs btn-success text-center" href="<?php echo base_url().'Rekap_salesman/cetak/';echo $data_->id_rencana_header; ?>"  
     					onclick="window.open(this.href, 'newwindow', 'width=600, height=470'); return false;">
@@ -84,10 +84,7 @@
 							<th style="background: #22313F;color:#fff;">No</th>									
 							<th style="background: #22313F;color:#fff;">Kunjungan</th>									
 							<th style="background: #22313F;color:#fff;">Absen</th>									
-							<th style="background: #22313F;color:#fff;">Display</th>									
-							<th style="background: #22313F;color:#fff;">Chiller</th>
-							<th style="background: #22313F;color:#fff;">Kompetitor</th>
-							<th style="background: #22313F;color:#fff;">Aktifitas SPG</th>
+							<th style="background: #22313F;color:#fff;">Foto Sapi</th>
 							<th style="background: #22313F;color:#fff;">Map</th>
 						</tr> 
 					</thead>
@@ -98,66 +95,40 @@
 								$jum_total = 0;		
 										foreach($detail_visit->result_array() as $data) { ?>
 										<tr>
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
+											<td>
 												<?php echo $no; ?>
 											</td>										
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
-												<?php echo $data['nama_customer']; ?>
+											<td>
+												<?php echo $data['name1']; ?>
+												<br>
+												<?php echo $data['desa']; ?>
 												<br>
 												<?php echo $data['tanggal_checkout']; ?>
 											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
+											<td>
 												<?php if($data['foto']){?>
-													<?php if($data['prospect'] == 1){?>
-														<a  
-															href="<?php echo base_url(); ?>Rekap_salesman/downloadProspect/<?php echo $data['foto']; ?>">
-															<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/prospect/";echo $data['foto']; ?>" border="0"/> <br>
-														</a>
-													<?php }else{?>
 														<a  
 															href="<?php echo base_url(); ?>Rekap_salesman/downloadCheckin/<?php echo $data['foto']; ?>">
 															<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/checkin/";echo $data['foto']; ?>" border="0"/> <br>
 														</a>
-													<?php }?>
 												<?php }?>
+												<?php echo $data['tanggal_checkout']; ?>
 											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
-												<?php if($data['foto_display']){?>
+											<td>
+												<?php 
+													$id_rencana_detail = $data['id_rencana_detail'];
+													$qa = $this->db->query("SELECT * FROM data_sapi WHERE id_rencana_detail='$id_rencana_detail'"); 
+												?>
+												<?php foreach($qa->result_array() as $rows) { ?>
 													<a  
-														href="<?php echo base_url(); ?>Rekap_salesman/downloadDisplay/<?php echo $data['foto_display']; ?>">
-														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/display_report/";echo $data['foto_display']; ?>" border="0"/> <br>
+														href="<?php echo base_url(); ?>Rekap_salesman/downloadDisplay/<?php echo $rows['foto']; ?>">
+														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
 													</a>	
-													<?php echo $data['keterangan_display']; ?>
+													<?php echo $rows['keterangan']; ?>
+													<br>
 												<?php }?>
-											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
-												<?php if($data['foto_chiller']){?>
-													<a  
-														href="<?php echo base_url(); ?>Rekap_salesman/downloadChiller/<?php echo $data['foto_chiller']; ?>">
-														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/chiller_report/";echo $data['foto_chiller']; ?>" border="0"/> <br>
-													</a>
-													<?php echo "Suhu Chiller "; echo $data['suhu']; echo " Derajat C"; ?>
-												<?php }?>
-											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
-												<?php if($data['foto_kompetitor']){?>
-													<a  
-														href="<?php echo base_url(); ?>Rekap_salesman/downloadKompetitor/<?php echo $data['foto_kompetitor']; ?>">
-														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/kompetitor_report/";echo $data['foto_kompetitor']; ?>" border="0"/> <br>
-													</a>
-													<?php echo $data['keterangan_kompetitor']; ?>
-												<?php }?>
-											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
-												<?php if($data['foto_spg']){?>
-													<a  
-														href="<?php echo base_url(); ?>Rekap_salesman/downloadSpg/<?php echo $data['foto_spg']; ?>">
-														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/spg_report/";echo $data['foto_spg']; ?>" border="0"/> <br>
-													</a>
-													<?php echo $data['keterangan_spg']; ?>
-												<?php }?>
-											</td>						
-											<td <?php if($data['prospect'] == 1){?> Style="background:#ee8033;"<?php }?>>
+											</td>											
+											<td>
 												<?php if($data['lats']){?>
 													<?php echo '<iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='.$data['lats'].','.$data['longs'].'&hl=es;z=16&amp;output=embed"></iframe>'?>
 												<?php }?>

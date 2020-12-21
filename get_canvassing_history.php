@@ -1,25 +1,17 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir");
 // $link = mysqli_connect("localhost", "root", "", "absen_android");
 if($_GET['id_user']) { 
 	$id_user = $_GET['id_user'];
 	$tanggal1 = $_GET['tanggal1'];
 	$tanggal2 = $_GET['tanggal2'];
-	$query=mysqli_query($link,"SELECT * FROM ((SELECT mc.nama_customer,trm.nomor_rencana,mc.alamat,
-							   ckin.tanggal_checkin,ckout.tanggal_checkout FROM trx_checkin ckin JOIN trx_checkout ckout 
-							   ON ckin.id_checkin = ckout.id_checkin JOIN mst_customer mc 
-							   ON mc.kode_customer=ckin.kode_customer JOIN trx_rencana_master trm 
-							   ON trm.id_rencana_header = ckin.id_rencana_header 
-							   WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
-							   AND '$tanggal2 23:59:59')
-							   UNION
-							   (SELECT tmp.nama_customer,trm.nomor_rencana,tmp.alamat,ckin.tanggal_checkin,
-							   ckout.tanggal_checkout FROM trx_checkin ckin JOIN trx_checkout ckout 
-							   ON ckin.id_checkin = ckout.id_checkin JOIN tmp_customer tmp 
-							   ON tmp.kode_customer=ckin.kode_customer JOIN trx_rencana_master trm 
-							   ON trm.id_rencana_header = ckin.id_rencana_header 
-							   WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
-							   AND '$tanggal2 23:59:59')) AS union_");
+	$query=mysqli_query($link,"SELECT mc.name1,trm.nomor_rencana,mc.desa,
+					ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+					ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trans_index mc 
+					ON mc.lifnr=ckin.id_customer JOIN trx_rencana_master trm 
+					ON trm.id_rencana_header = ckin.id_rencana_header 
+					WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
+					AND '$tanggal2 23:59:59' GROUP BY ckout.id_rencana_detail");
 	if (!$query) {
     die(mysql_error());
 	}
@@ -30,21 +22,13 @@ if($_GET['id_user']) {
 		echo json_encode($response);
 	}
 	else {
-		$result = mysqli_query($link,"SELECT * FROM ((SELECT mc.nama_customer,trm.nomor_rencana,mc.alamat,
-							   ckin.tanggal_checkin,ckout.tanggal_checkout FROM trx_checkin ckin JOIN trx_checkout ckout 
-							   ON ckin.id_checkin = ckout.id_checkin JOIN mst_customer mc 
-							   ON mc.kode_customer=ckin.kode_customer JOIN trx_rencana_master trm 
-							   ON trm.id_rencana_header = ckin.id_rencana_header 
-							   WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
-							   AND '$tanggal2 23:59:59')
-							   UNION
-							   (SELECT tmp.nama_customer,trm.nomor_rencana,tmp.alamat,ckin.tanggal_checkin,
-							   ckout.tanggal_checkout FROM trx_checkin ckin JOIN trx_checkout ckout 
-							   ON ckin.id_checkin = ckout.id_checkin JOIN tmp_customer tmp 
-							   ON tmp.kode_customer=ckin.kode_customer JOIN trx_rencana_master trm 
-							   ON trm.id_rencana_header = ckin.id_rencana_header 
-							   WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
-							   AND '$tanggal2 23:59:59')) AS union_");
+		$result = mysqli_query($link,"SELECT mc.name1,trm.nomor_rencana,mc.desa,
+							ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+							ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trans_index mc 
+							ON mc.lifnr=ckin.id_customer JOIN trx_rencana_master trm 
+							ON trm.id_rencana_header = ckin.id_rencana_header 
+							WHERE ckout.id_user = '$id_user' AND ckout.tanggal_checkout BETWEEN '$tanggal1 00:00:00' 
+							AND '$tanggal2 23:59:59' GROUP BY ckout.id_rencana_detail");
 	if (!$result) {
     die(mysql_error());
 	}

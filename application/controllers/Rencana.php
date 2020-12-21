@@ -176,8 +176,35 @@ class Rencana extends CI_Controller {
 			$in['id_customer'] = $id_customer;
 			$in['id_karyawan'] = $id_karyawan;
 			$in['status_rencana'] = "0";
-			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$get_customer->kode_customer;
+			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
 			$in['active'] = "1";
+			$in['lock'] = "0";
+			
+			$this->db->insert("trx_rencana_detail",$in);
+			$response = array('error' => 'False');
+			echo json_encode($response);
+		}	
+	}
+
+	public function create_detail_urgent() {
+		date_default_timezone_set('Asia/Jakarta');
+		$id_rencana_header=$this->input->post("id_rencana_header");
+		$id_karyawan=$this->input->post("id_karyawan");
+		$id_customer=$this->input->post("id_customer");
+		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
+		$get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		if($get_id == null){
+			$response = array('error' => 'True');
+			echo json_encode($response);
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+			$in['id_rencana_header'] = $id_rencana_header;
+			$in['id_kegiatan'] = "26";
+			$in['id_customer'] = $id_customer;
+			$in['id_karyawan'] = $id_karyawan;
+			$in['status_rencana'] = "0";
+			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
+			$in['active'] = "2";
 			$in['lock'] = "0";
 			
 			$this->db->insert("trx_rencana_detail",$in);
@@ -421,11 +448,11 @@ class Rencana extends CI_Controller {
 					
 					if($getRencana->jml==0){
 					    if($get_id == null){
-    						$no_akhir = "RCN.000000.000";
+    						$no_akhir = "R0000000000.000";
     					}else{ 
     						$no_akhir = $get_id->nomor_rencana;
     					}
-    					  $tanggal = "RCN.".date("ymd",strtotime($this->input->post('tanggal_rencana')))."."; 
+						$tanggal = "R".$id_user_inpt.date('ymd')."."; 
     
     					$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
     
@@ -589,40 +616,39 @@ class Rencana extends CI_Controller {
 				redirect("Rencana/index/".$this->input->post('id_rencana_header'));
 			}
 		} else if($this->session->userdata("id_role")==4) {
-			$required = array('id_customer','nomor_rencana','id_karyawan');
+			$required = array('id_rencana_header','id_karyawan','id_customer');
 			$error = false;
 			foreach($required as $field) {
 				if(empty($_POST[$field])) {
 					$error = true;
 				}
 			}
-			$id_wilayah = $this->session->userdata('id_wilayah');
-			$qkeg = $this->db->query("SELECT id_kegiatan FROM mst_kegiatan WHERE id_wilayah='$id_wilayah' AND active='1'")->row();
+			$id_customer = $this->input->post('id_customer');
+			$id_rencana_header = $this->input->post('id_rencana_header');
+			// $qkeg = $this->db->query("SELECT lifnr FROM trans_index WHERE name1='$nama_customer'")->row();
 			$tipe = $this->input->post("tipe");	
 			$where['id_rencana_detail'] = $this->input->post('id_rencana_detail');
 
 			$in['id_karyawan'] 	= $this->input->post('id_karyawan');
-			$in['id_kegiatan'] 	= $qkeg->id_kegiatan;
-			$in['id_customer'] 	= $this->input->post('id_customer');
+			$in['id_kegiatan'] 	= 26;
+			$in['id_customer'] 	= $id_customer;
 			$in['keterangan'] 	= "";
 			$in['active'] 	= "1";
-			$in['id_rencana_header'] = $this->input->post('id_rencana_header');
-			$id_cst=$this->input->post('id_customer');
-			
+			$in['id_rencana_header'] = $id_rencana_header;			
 	
 			if($error) {
 				$this->session->set_flashdata("error","Silahkan pilih karyawan, kegiatan, customer dan isi keterangan dengan lengkap");
 				redirect("Rencana/index/".$this->input->post('id_rencana_header'));
 			} else {	
-				$q_rencana_cst = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer ='$id_cst'")->row();
-				$kd_cst=$q_rencana_cst->kode_customer;
-				$no_ren=$this->input->post('nomor_rencana');
-				$no_rcn_dt = $no_ren."_".$kd_cst;
+				$qnmr = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header ='$id_rencana_header'")->row();
+				// $kd_cst=$q_rencana_cst->kode_customer;
+				$no_ren=$qnmr->nomor_rencana;
+				$no_rcn_dt = $no_ren."_".$id_customer;
 				$in['nomor_rencana_detail'] = $no_rcn_dt;
 
 				$id_karyawan = $this->input->post('id_karyawan');
-				$id_kegiatan = $qkeg->id_kegiatan;
-				$id_customer = $this->input->post('id_customer');
+				$id_kegiatan = 26;
+				$id_customer = $id_customer;
 				$id_rencana_header = $this->input->post('id_rencana_header');
 
 				$q_check=$this->db->query("SELECT COUNT(*) AS jml FROM trx_rencana_detail WHERE id_karyawan='$id_karyawan' 
@@ -722,6 +748,20 @@ class Rencana extends CI_Controller {
 			redirect("Rencana");			
 		} else {
 			redirect("login");
+		}
+	}
+
+	
+	function get_autocomplete(){
+		if (isset($_POST['term'])) {
+		  	$result = $this->App_model->search_petani($_POST['term']);
+		   	if (count($result) > 0) {
+		    foreach ($result as $row)
+		     	$arr_result[] = array(
+					'label'	=> $row->name1,
+				);
+		     	echo json_encode($arr_result);
+		   	}
 		}
 	}
 

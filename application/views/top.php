@@ -198,19 +198,28 @@
 				</a>
 				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 			</div>
-		<?php }else if($this->session->userdata("id_role")==4){?>
+		<?php }else if($this->session->userdata("id_role")==4){
+			$count_pengiriman = $this->db->query("SELECT COUNT(*) AS hitung_pengiriman FROM trx_rencana_master WHERE aproved='0'")->row();?>
 				<div class="topnav" id="myTopnav" style="background: linear-gradient(to right, #0B5345 0%, #1A5276 50%, #4A235A  100%);">
 					<a href="<?php echo base_url(); ?>dashboard">
 						<i class="fa fa-home"></i>
-						<span class="menu-text"></span>
+						<span class="menu-text">Home</span>
 					</a>
 					<a href="<?php echo base_url(); ?>Customer">
 						<i class="menu-icon  fa fa-users"></i>
-						<span class="menu-text">  </span>
+						<span class="menu-text"> Data Petani </span>
+					</a>
+					<a href="<?php echo base_url(); ?>Aproval">
+						<i class="menu-icon  fa fa-check"></i>
+						<span class="menu-text" style="margin-right:28px;"> Aproval Kunjungan <label style="border-radius:25px;height:20px;position:absolute;margin-left:3px;" class="label label-warning"> <?php echo "$count_pengiriman->hitung_pengiriman"; ?> </label></span>
+					</a>
+					<a href="<?php echo base_url(); ?>Aproval_urgent">
+						<i class="menu-icon  fa fa-exclamation"></i>
+						<span class="menu-text"> Kunjungan Urgent </span>
 					</a>
 					<a href="<?php echo base_url(); ?>Rencana">
 						<i class="menu-icon  fa fa-plus"></i>
-						<span class="menu-text"> Kunjungan </span>
+						<span class="menu-text"> Rencana Kunjungan </span>
 					</a>
 					<a href="<?php echo base_url(); ?>Report_rencana">
 						<i class="menu-icon  fa fa-crosshairs"></i>
@@ -218,7 +227,7 @@
 					</a>
 					<a href="<?php echo base_url(); ?>Rekap_salesman">
 						<i class="menu-icon  fa fa-map-marker"></i>
-						<span class="menu-text"> Rekap Sales </span>
+						<span class="menu-text"> Lokasi Kunjungan </span>
 					</a>
 					<a onclick="document.getElementById('id01').style.display='block'" href="#" style="background:green">
 						<small>

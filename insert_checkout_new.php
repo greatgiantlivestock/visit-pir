@@ -8,9 +8,15 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 		$id_rencana_detail = $_POST['id_rencana_detail']; 
 		$lats = $_POST['lats']; 
 		$longs = $_POST['longs']; 
-		$id_checkin = $_POST['id_checkin']; 
+		if($_POST['id_checkin']){
+			$id_checkin = $_POST['id_checkin'];
+		} 
 		$keterangan = $_POST['keterangan']; 
 		$tanggal = date('Y-m-d h:i:s'); 
+		$qDtRcn = "SELECT id_checkin FROM trx_checkin WHERE id_rencana_detail='$id_rencana_detail'";
+        $ExecQ = mysqli_query($link,$qDtRcn);
+        $rowDT = mysqli_fetch_assoc($ExecQ);
+		$id_checkin = $rowDT['id_checkin']; 
         
 		$query = "INSERT INTO trx_checkout (id_checkin,id_user,lats,longs,tanggal_checkout,realisasi_kegiatan,id_rencana_detail) 
 					 VALUES ('$id_checkin','$id_user','$lats','$longs','$tanggal','$keterangan','$id_rencana_detail') ";
