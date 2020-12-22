@@ -51,7 +51,7 @@
 											<td><?php echo $data['tanggal_rencana']; ?></td>
 											<td><?php echo $data['tanggal_penetapan']; ?></td>
 											<td><?php echo $data['jml']; echo " Petani"; ?></td>
-											<td><?php if($data['aproved']=="0"){echo "Belum di Aprove";}else{echo "Sudah di Aprove";}; ?></td>
+											<td><?php if($data['aproved']=="0"){echo "Belum di Aprove";}else{echo "Tanpa Aproval";}; ?></td>
 											<td>
 												<a id="openModalDetailUrgentPlan"
 													style="border-radius:25px;" 
