@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Rencana extends CI_Controller {

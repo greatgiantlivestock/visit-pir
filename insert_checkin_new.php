@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
 $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir");
 if($_POST['id_rencana_detail']!="0"){
 	$mosConfigfoldername = "/"; 
