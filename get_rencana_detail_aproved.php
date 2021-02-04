@@ -4,7 +4,7 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 if($_GET['id_karyawan']) { 
 	$id_karyawan = $_GET['id_karyawan'];
 	$query=mysqli_query($link,"SELECT trd.* FROM trx_rencana_detail trd JOIN trx_rencana_master trm ON trd.id_rencana_header=trm.id_rencana_header 
-							WHERE status_rencana !=2 AND trd.lock='0' AND id_karyawan='$id_karyawan' 
+							WHERE status_rencana !=2 AND trd.active='2' AND trd.lock='0' AND id_karyawan='$id_karyawan' 
 							ORDER BY id_rencana_detail ASC");
 	if (!$query) {
     	die(mysql_error());
@@ -16,7 +16,7 @@ if($_GET['id_karyawan']) {
 		echo json_encode($response);
 	}else {
 		$result = mysqli_query($link,"SELECT trd.* FROM trx_rencana_detail trd JOIN trx_rencana_master trm ON trd.id_rencana_header=trm.id_rencana_header 
-							WHERE status_rencana !=2 AND trd.lock='0' AND id_karyawan='$id_karyawan' 
+							WHERE status_rencana !=2 AND trd.active='2' AND trd.lock='0' AND id_karyawan='$id_karyawan' 
 							ORDER BY id_rencana_detail ASC");
 		if (!$result) {
     		die(mysql_error());

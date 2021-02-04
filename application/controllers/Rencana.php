@@ -166,12 +166,12 @@ class Rencana extends CI_Controller {
 		$id_karyawan=$this->input->post("id_karyawan");
 		$id_customer=$this->input->post("id_customer");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
-		$get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		// $get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);
 		}else{ 
-			$no_akhir = $get_id->nomor_rencana;
+			// $no_akhir = $get_id->nomor_rencana;
 			$in['id_rencana_header'] = $id_rencana_header;
 			$in['id_kegiatan'] = "26";
 			$in['id_customer'] = $id_customer;
@@ -192,18 +192,20 @@ class Rencana extends CI_Controller {
 		$id_rencana_header=$this->input->post("id_rencana_header");
 		$id_karyawan=$this->input->post("id_karyawan");
 		$id_customer=$this->input->post("id_customer");
+		$keterangan=$this->input->post("keterangan");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
-		$get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		// $get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);
 		}else{ 
-			$no_akhir = $get_id->nomor_rencana;
+			// $no_akhir = $get_id->nomor_rencana;
 			$in['id_rencana_header'] = $id_rencana_header;
 			$in['id_kegiatan'] = "26";
 			$in['id_customer'] = $id_customer;
 			$in['id_karyawan'] = $id_karyawan;
 			$in['status_rencana'] = "0";
+			$in['keterangan'] = $keterangan;
 			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
 			$in['active'] = "2";
 			$in['lock'] = "0";

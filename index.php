@@ -55,7 +55,7 @@
  */
 	//development environment
 	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	// //Switch to Production
+	// Switch to Production
 	if ($_SERVER['SERVER_NAME'] == 'local_server_name') {
 		define('ENVIRONMENT', 'development');
 	} else {
@@ -96,7 +96,7 @@
 // 		echo 'The application environment is not set correctly.';
 // 		exit(1); // EXIT_ERROR
 // }
-// //Switch to Production
+//Switch to Production
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'development':

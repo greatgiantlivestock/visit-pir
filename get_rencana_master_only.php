@@ -3,7 +3,7 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 // $link = mysqli_connect("localhost", "root", "", "absen_android");
 if($_GET['id_karyawan']) { 
 	$id_karyawan = $_GET['id_karyawan'];
-	$query=mysqli_query($link,"SELECT * FROM trx_rencana_master WHERE id_user_input_rencana='$id_karyawan' AND aproved='1'");
+	$query=mysqli_query($link,"SELECT * FROM trx_rencana_master WHERE id_user_input_rencana='$id_karyawan'");
 	if (!$query) {
     	die(mysql_error());
 	}
@@ -13,7 +13,7 @@ if($_GET['id_karyawan']) {
 		$response = array('error' => 'True');
 		echo json_encode($response);
 	}else {
-		$result = mysqli_query($link,"SELECT * FROM trx_rencana_master WHERE id_user_input_rencana='$id_karyawan' AND aproved='1'");
+		$result = mysqli_query($link,"SELECT * FROM trx_rencana_master WHERE id_user_input_rencana='$id_karyawan'");
 		if (!$result) {
     		die(mysql_error());
 		}
