@@ -247,7 +247,7 @@ class App_model extends CI_Model {
 							union 
 							SELECT COUNT(*)AS jml,trm.id_rencana_header,tanggal_penetapan,tanggal_rencana,aproved,veraa_user FROM trx_rencana_master trm 
 							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN (SELECT lifnr,name1,desa,veraa_user 
-							FROM trans_indexp GROUP BY lifnr)as petani ON trd.id_customer=petani.lifnr WHERE urgent='1' AND trm.active='1' GROUP BY trm.id_rencana_header)as data_union order by id_rencana_header desc");
+							FROM trans_indexp GROUP BY lifnr)as petani ON trd.id_customer=petani.lifnr WHERE urgent='1' AND trm.active='1' GROUP BY trm.id_rencana_header)as data_union order by id_rencana_header desc limit 200");
 		return $q;
 	}
 	public function get_customer_search($name="") {
