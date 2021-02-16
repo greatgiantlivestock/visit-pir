@@ -373,7 +373,7 @@ class App_model extends CI_Model {
 		$hasil = "";
 		$q = $this->db->query("SELECT id_user,nama_karyawan,nama_wilayah FROM mst_user JOIN mst_wilayah
 							ON mst_wilayah.id_wilayah=mst_user.id_wilayah JOIN trx_rencana_detail ON mst_user.id_karyawan=trx_rencana_detail.id_karyawan
-							WHERE id_aplikasi='2' GROUP BY id_user");
+							WHERE id_aplikasi='2' AND mst_user.active='1' GROUP BY id_user");
 		$hasil .= '<option selected="selected" value>Pilih User</option>';
 		foreach($q->result() as $h) {
 			if($nama == $h->nama_karyawan) {
@@ -453,7 +453,7 @@ class App_model extends CI_Model {
 			$q = $this->db->query("SELECT mst_user.id_user,nama_karyawan,nama_wilayah FROM mst_user JOIN mst_wilayah
 							ON mst_wilayah.id_wilayah=mst_user.id_wilayah JOIN mst_departemen 
 							ON mst_user.id_departemen=mst_departemen.id_departemen JOIN trx_rencana_detail 
-							ON trx_rencana_detail.id_karyawan=mst_user.id_karyawan WHERE nama_karyawan <> 'NULL'
+							ON trx_rencana_detail.id_karyawan=mst_user.id_karyawan WHERE nama_karyawan <> 'NULL' AND mst_user.active='1'
 							GROUP BY mst_user.id_user");
 		}
 		$hasil .= '<option value>Pilih Karyawan</option>';

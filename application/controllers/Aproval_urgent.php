@@ -120,7 +120,7 @@ class Aproval_urgent extends CI_Controller {
 		$get = $this->db->query("SELECT * FROM(SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN 
 							(SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr)AS petani ON trd.id_customer=petani.lifnr WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header'
 							UNION SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN 
-							(SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr)AS petani ON trd.id_customer=petani.lifnr WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header')as data_union");
+							(SELECT lifnr,name1,desa,veraa_user FROM trans_indexp GROUP BY lifnr)AS petani ON trd.id_customer=petani.lifnr WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header')as data_union");
 		echo '<table class="table table-bordered">
 					<thead>
 						<tr>
