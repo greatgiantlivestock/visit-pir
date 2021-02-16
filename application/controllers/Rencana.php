@@ -224,7 +224,7 @@ class Rencana extends CI_Controller {
 		$keterangan=$this->input->post("keterangan");
 		$nama_customer=$this->input->post("nama_customer");
 		$desa=$this->input->post("desa");
-		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
+		$get_id = $this->db->query("SELECT nomor_rencana,nama FROM trx_rencana_master JOIN mst_user ON mst_user.id_user=trx_rencana_master.id_user_input_rencana WHERE id_rencana_header='$id_rencana_header'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);
@@ -235,6 +235,7 @@ class Rencana extends CI_Controller {
 				$in_tp['lifnr'] = $kodeawal;
 				$in_tp['name1'] = $nama_customer;
 				$in_tp['desa'] = $desa;
+				$in_tp['veraa_user'] = $get_id->nama;
 				$this->db->insert("trans_indexp",$in_tp);
 
 				$in['id_rencana_header'] = $id_rencana_header;
@@ -255,6 +256,7 @@ class Rencana extends CI_Controller {
 				$in_tp['lifnr'] = (int)$kodeawal+1;
 				$in_tp['name1'] = $nama_customer;
 				$in_tp['desa'] = $desa;
+				$in_tp['veraa_user'] = $get_id->nama;
 				$this->db->insert("trans_indexp",$in_tp);
 
 				$in['id_rencana_header'] = $id_rencana_header;
