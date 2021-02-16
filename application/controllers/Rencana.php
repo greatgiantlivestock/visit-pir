@@ -216,6 +216,64 @@ class Rencana extends CI_Controller {
 		}	
 	}
 
+	public function create_detail_urgent_prospect() {
+		date_default_timezone_set('Asia/Jakarta');
+		$id_rencana_header=$this->input->post("id_rencana_header");
+		$id_karyawan=$this->input->post("id_karyawan");
+		// $id_customer=$this->input->post("id_customer");
+		$keterangan=$this->input->post("keterangan");
+		$nama_customer=$this->input->post("nama_customer");
+		$desa=$this->input->post("desa");
+		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
+		if($get_id == null){
+			$response = array('error' => 'True');
+			echo json_encode($response);
+		}else{
+			$get_tp = $this->db->query("SELECT count(*) as jml,max(lifnr) as lifnr FROM trans_indexp")->row();
+			if($get_tp->jml==0){
+				$kodeawal = 99900000;
+				$in_tp['lifnr'] = $kodeawal;
+				$in_tp['name1'] = $nama_customer;
+				$in_tp['desa'] = $desa;
+				$this->db->insert("trans_indexp",$in_tp);
+
+				$in['id_rencana_header'] = $id_rencana_header;
+				$in['id_kegiatan'] = "26";
+				$in['id_customer'] = $kodeawal;
+				$in['id_karyawan'] = $id_karyawan;
+				$in['status_rencana'] = "0";
+				$in['keterangan'] = $keterangan;
+				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$kodeawal;
+				$in['active'] = "2";
+				$in['lock'] = "0";
+				
+				$this->db->insert("trx_rencana_detail",$in);
+				$response = array('error' => 'False');
+				echo json_encode($response);
+			}else{
+				$kodeawal=$get_tp->lifnr;
+				$in_tp['lifnr'] = (int)$kodeawal+1;
+				$in_tp['name1'] = $nama_customer;
+				$in_tp['desa'] = $desa;
+				$this->db->insert("trans_indexp",$in_tp);
+
+				$in['id_rencana_header'] = $id_rencana_header;
+				$in['id_kegiatan'] = "26";
+				$in['id_customer'] = $in_tp['lifnr'];
+				$in['id_karyawan'] = $id_karyawan;
+				$in['status_rencana'] = "0";
+				$in['keterangan'] = $keterangan;
+				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$in_tp['lifnr'];
+				$in['active'] = "2";
+				$in['lock'] = "0";
+				
+				$this->db->insert("trx_rencana_detail",$in);
+				$response = array('error' => 'False');
+				echo json_encode($response);
+			}
+		}	
+	}
+
 	public function create_header_urgent() {
 		date_default_timezone_set('Asia/Jakarta');
 		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
