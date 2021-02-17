@@ -33,7 +33,7 @@
                                 $id_history = $row['mtid']+1; 
                             }
                             
-                            $sql = "INSERT INTO trans_index(id_history,indnr,lifnr,name1,prtype,regdate,desa,veraa_user,beastid,vistgid,lotid,sexdesc,bredesc,catdesc,status_pir)
+                            $sql = "INSERT INTO trans_index1(id_history,indnr,lifnr,name1,prtype,regdate,desa,veraa_user,beastid,vistgid,lotid,sexdesc,bredesc,catdesc,status_pir)
                                     values ($id_history,'$indnr','$lifnr','$name1','$prtype','$regdate','$desa','$veraa_user','$beastid','$vistgid','$lotid','$sexdesc','$bredesc','$catdesc','$status_pir')";
                             $result = mysqli_query($cn,$sql);
                             
