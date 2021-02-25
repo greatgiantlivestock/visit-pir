@@ -39,9 +39,11 @@
 	let rotateAngle = 90;
 	function rotate(image) {
 		image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+		rotateAngle = rotateAngle + 90;
 	}
 	function rotate1(image1) {
 		image1.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+		rotateAngle = rotateAngle + 90;
 	}
 </script>
 <div class="w3-container">
