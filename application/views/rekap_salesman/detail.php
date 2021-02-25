@@ -10,6 +10,13 @@
 		width:200px; height:200px;
 	}
 
+	#rotater1 {
+		transition: all 0.3s ease;
+		border: 0.0625em solid black;
+		border-radius: 3.75em;
+		width:200px; height:200px;
+	}
+
 	/* Add Animation */
 	.modal-content, #caption {    
 		-webkit-animation-name: zoom;
@@ -30,10 +37,11 @@
 </style>
 <script>
 	let rotateAngle = 90;
-
 	function rotate(image) {
-	image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
-	rotateAngle = rotateAngle + 90;
+		image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+	}
+	function rotate1(image1) {
+		image1.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
 	}
 </script>
 <div class="w3-container">
@@ -138,7 +146,7 @@
 												<?php foreach($qa->result_array() as $rows) { ?>
 													<a  
 														href="<?php echo base_url(); ?>Rekap_salesman/downloadDisplay/<?php echo $rows['foto']; ?>">
-														<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
+														<img style="width:200px; height:200px"; id="rotater1" onclick="rotate1(this)" src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
 													</a>	
 													<?php echo $rows['keterangan']; ?>
 													<br>
