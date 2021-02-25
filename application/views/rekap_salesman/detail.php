@@ -7,6 +7,7 @@
 		transition: all 0.3s ease;
 		border: 0.0625em solid black;
 		border-radius: 3.75em;
+		width:200px; height:200px;
 	}
 
 	/* Add Animation */
