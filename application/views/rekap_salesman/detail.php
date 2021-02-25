@@ -3,6 +3,12 @@
 <style>
 	body {font-family: Arial, Helvetica, sans-serif;}
 
+	#rotater {
+		transition: all 0.3s ease;
+		border: 0.0625em solid black;
+		border-radius: 3.75em;
+	}
+
 	/* Add Animation */
 	.modal-content, #caption {    
 		-webkit-animation-name: zoom;
@@ -21,6 +27,14 @@
 		to {transform:scale(1)}
 	}
 </style>
+<script>
+	let rotateAngle = 90;
+
+	function rotate(image) {
+	image.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+	rotateAngle = rotateAngle + 90;
+	}
+</script>
 <div class="w3-container">
   <h2>Detail Aktifitas Kunjungan PPL</h2>
 
@@ -108,9 +122,10 @@
 											<td>
 												<?php if($data['foto']){?>
 														<a  
-															href="<?php echo base_url(); ?>Rekap_salesman/downloadCheckin/<?php echo $data['foto']; ?>">
-															<img style="width:200px; height:200px"; src="<?php echo base_url(); echo "/upload/checkin/";echo $data['foto']; ?>" border="0"/> <br>
+															href="#">
+															<img style="width:200px; height:200px"; id="rotater" onclick="rotate(this)" src="<?php echo base_url(); echo "/upload/checkin/";echo $data['foto']; ?>" border="0"/> 
 														</a>
+														<br>
 												<?php }?>
 												<?php echo $data['tanggal_checkout']; ?>
 											</td>						
