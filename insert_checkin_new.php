@@ -10,7 +10,8 @@ if($_POST['id_rencana_detail']!="0"){
 		$lats = $_POST['lats']; 
 		$longs = $_POST['longs']; 
 		$foto1 = $_POST['foto1']; 
-		$tanggal = date('Y-m-d H-i-s'); 
+		// $tanggal = date('Y-m-d H-i-s'); 
+		$tanggal = $_POST['tanggal']; 
 		$nomor_checkin = $id_user.date('ymdhis'); 
 		$qDtRcn = "SELECT id_rencana_header,id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'";
         $ExecQ = mysqli_query($link,$qDtRcn);
@@ -36,7 +37,8 @@ if($_POST['id_rencana_detail']!="0"){
 		$id_rencana_detail = $_POST['id_rencana_detail']; 
 		$lats = $_POST['lats']; 
 		$longs = $_POST['longs']; 
-		$tanggal = date('Y-m-d H-i-s'); 
+		$tanggal = $_POST['tanggal']; 
+		// $tanggal = date('Y-m-d H-i-s'); 
 		$nomor_checkin = $id_user.date('ymdhis'); 
 		$qDtRcn = "SELECT id_rencana_header,id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'";
         $ExecQ = mysqli_query($link,$qDtRcn);

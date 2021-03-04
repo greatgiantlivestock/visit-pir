@@ -9,11 +9,12 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 		$id_rencana_detail = $_POST['id_rencana_detail']; 
 		$lats = $_POST['lats']; 
 		$longs = $_POST['longs']; 
-		if($_POST['id_checkin']){
-			$id_checkin = $_POST['id_checkin'];
-		} 
+		// if($_POST['id_checkin']){
+		// 	$id_checkin = $_POST['id_checkin'];
+		// } 
 		$keterangan = $_POST['keterangan']; 
-		$tanggal = date('Y-m-d h:i:s'); 
+		// $tanggal = date('Y-m-d h:i:s'); 
+		$tanggal = $_POST['tanggal']; 
 		$qDtRcn = "SELECT id_checkin FROM trx_checkin WHERE id_rencana_detail='$id_rencana_detail'";
         $ExecQ = mysqli_query($link,$qDtRcn);
         $rowDT = mysqli_fetch_assoc($ExecQ);
