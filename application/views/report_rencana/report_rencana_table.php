@@ -97,19 +97,22 @@
 					</div>
 						<table id="dataTables-example" class="table table-striped table-bordered table-hover">
 							<thead>
-								<tr>
-									<!-- <th style="background: #22313F;color:#fff;">No</th>									 -->
-									<!-- <th style="background: #22313F;color:#fff;">Nomor Rencana</th>									 -->
-									<th style="background: #22313F;color:#fff;">PPL</th>									
-									<!-- <th style="background: #22313F;color:#fff;">Tanggal Ditetapkan</th>									 -->									
+								<!-- <tr>
+									<th style="background: #22313F;color:#fff;">PPL</th>																	
 									<th style="background: #22313F;color:#fff;">Petani</th>									
 									<th style="background: #22313F;color:#fff;">Alamat</th>									
 									<th style="background: #22313F;color:#fff;">Tanggal Rencana</th>
 									<th style="background: #22313F;color:#fff;">Waktu Checkin</th>
 									<th style="background: #22313F;color:#fff;">Waktu Checkout</th>
 									<th style="background: #22313F;color:#fff;">Durasi Kunjungan</th>
-									<!-- <th style="background: #22313F;color:#fff;">Keterangan</th> -->
 									<th style="background: #22313F;color:#fff;">Status</th>
+								</tr>  -->
+								<tr>
+									<th style="background: #22313F;color:#fff;">Index</th>																	
+									<th style="background: #22313F;color:#fff;">Petani</th>									
+									<th style="background: #22313F;color:#fff;">Alamat</th>		
+									<th style="background: #22313F;color:#fff;">Total Durasi</th>
+									<th style="background: #22313F;color:#fff;">Total Kunjungan</th>
 								</tr> 
 							</thead>
 							<tbody>
@@ -127,18 +130,27 @@
 																	AND nama LIKE '%$nama_karyawan' AND id_aplikasi='2'
 																	ORDER BY trm.nomor_rencana ASC");
 								}else if($this->session->userdata("id_role") == 3 || $this->session->userdata("id_role") == 4 || $this->session->userdata("id_role") == 6){
-									// $departemen=$this->session->userdata('id_departemen');
-									$q_tarik_data = $this->db->query("SELECT trm.nomor_rencana,trm.tanggal_penetapan,trm.tanggal_rencana,
-																	trm.keterangan, trs.name1,trs.desa,tanggal_checkout,tanggal_checkin,mu.nama,trd.status_rencana
-																	FROM trx_rencana_master trm JOIN trx_rencana_detail trd
-																	ON trm.id_rencana_header = trd.id_rencana_header 
-																	JOIN trans_index trs ON trs.lifnr = trd.id_customer
-																	JOIN mst_user mu ON mu.id_karyawan = trd.id_karyawan
-																	LEFT JOIN trx_checkin ON trx_checkin.id_rencana_detail=trd.id_rencana_detail
-																	LEFT JOIN trx_checkout ON trx_checkout.id_rencana_detail=trd.id_rencana_detail
+									// $q_tarik_data = $this->db->query("SELECT trm.nomor_rencana,trm.tanggal_penetapan,trm.tanggal_rencana,
+									// 								trm.keterangan, trs.name1,trs.desa,tanggal_checkout,tanggal_checkin,mu.nama,trd.status_rencana
+									// 								FROM trx_rencana_master trm JOIN trx_rencana_detail trd
+									// 								ON trm.id_rencana_header = trd.id_rencana_header 
+									// 								JOIN trans_index trs ON trs.lifnr = trd.id_customer
+									// 								JOIN mst_user mu ON mu.id_karyawan = trd.id_karyawan
+									// 								LEFT JOIN trx_checkin ON trx_checkin.id_rencana_detail=trd.id_rencana_detail
+									// 								LEFT JOIN trx_checkout ON trx_checkout.id_rencana_detail=trd.id_rencana_detail
+									// 								WHERE trm.tanggal_rencana BETWEEN '$tanggal_mulai' AND '$tanggal_sampai'
+									// 								AND nama LIKE '%$nama_karyawan%' AND id_aplikasi='2' GROUP BY trd.id_rencana_detail
+									// 								ORDER BY trm.nomor_rencana ASC");
+									$q_tarik_data = $this->db->query("SELECT id_rencana_detail,indnr,name1,desa,SUM(a) AS durasi,COUNT(id_rencana_detail)AS jml FROM
+																	(SELECT trd.id_rencana_detail,trd.indnr,name1,desa,TIMESTAMPDIFF(SECOND, tanggal_checkin,tanggal_checkout)AS a 
+																	FROM trx_rencana_master trm JOIN trx_rencana_detail trd 
+																	ON trm.id_rencana_header=trd.id_rencana_header JOIN (SELECT lifnr,indnr,name1,desa 
+																	FROM trans_index GROUP BY indnr)AS data1 ON data1.lifnr=trd.id_customer JOIN trx_checkin tci 
+																	ON tci.id_rencana_detail=trd.id_rencana_detail JOIN trx_checkout tco ON tco.id_rencana_detail=trd.id_rencana_detail
+																	JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user
 																	WHERE trm.tanggal_rencana BETWEEN '$tanggal_mulai' AND '$tanggal_sampai'
 																	AND nama LIKE '%$nama_karyawan%' AND id_aplikasi='2' GROUP BY trd.id_rencana_detail
-																	ORDER BY trm.nomor_rencana ASC");
+																	ORDER BY trm.nomor_rencana ASC) AS data1 GROUP BY indnr");
 								}else if($this->session->userdata("id_role") == 5){
 									$departemen=$this->session->userdata('id_departemen');
 									$id_karyawan=$this->session->userdata('id_karyawan');
@@ -156,48 +168,19 @@
 								}		
 								foreach($q_tarik_data->result_array() as $data) { ?>
 									<tr>
-										<!-- <td><?php echo $no; ?></td>						 -->
-										<!-- <td><?php echo $data['nomor_rencana']; ?></td>						 -->
-										<td><?php echo $data['nama']; ?></td>						
-										<!-- <td><?php echo $data['tanggal_penetapan']; ?></td>						 -->						
+										<td><?php echo $data['indnr']; ?></td>											
 										<td><?php echo $data['name1']; ?></td>						
 										<td><?php echo $data['desa']; ?></td>						
-										<td><?php echo $data['tanggal_rencana']; ?></td>
-										<td><?php if($data['tanggal_checkin']!=null){echo $data['tanggal_checkin'];} ?></td>
-										<td><?php if($data['tanggal_checkout']!=null){echo $data['tanggal_checkout'];} ?></td>
 										<td>
 											<?php 
-												if($data['tanggal_checkin']!=null && $data['tanggal_checkout']!=null){
-													$datetime1 = new DateTime($data['tanggal_checkout']);
-													$datetime2 = new DateTime($data['tanggal_checkin']);
-													$interval=$datetime1->diff($datetime2);
-													$elapsed = $interval->format('%a days %h hours %i minutes %s seconds');
-													echo $elapsed;
-												} ?>
-										</td>
-										<!-- <td><?php echo $data['keterangan']; ?></td> -->
-										<td>
-											<?php 
-											if($data['status_rencana'] =='0'){
-												echo "Belum terealisasi";
-											}else if ($data['status_rencana'] =='1'){
-												echo "Checkin";
-											}else if($data['status_rencana'] == '2'){
-												echo "Checkout (Terealisasi)";
-											}else{
-												echo "Rencana Dibatalkan";
-											} 
+												$seconds = (int)$data['durasi']; 
+												$hours = floor($seconds / 3600);
+												$mins = floor($seconds / 60 % 60);
+												$secs = floor($seconds % 60);
+												echo $hours; echo " Jam, "; echo $mins; echo " Menit ";echo $secs;echo " Detik";  
 											?>
 										</td>
-										<!--
-										<td><div>
-												<a id="openModalEditOpname" href="#" class="label label-primary" 
-												data-kegiatan="<?php echo $data['id_rencana_header']?>" 
-												data-departemen="" data-wilayah="" href="#" data-toggle="modal" 
-												data-target="#ModalInputKegiatan">Detail</a>
-											</div>
-										</td>
-										-->
+										<td><?php echo $data['jml']; ?></td>
 									</tr>
 									<?php
 									$no++; 

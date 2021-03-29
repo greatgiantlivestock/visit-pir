@@ -164,6 +164,7 @@ class Rencana extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		$id_rencana_header=$this->input->post("id_rencana_header");
 		$id_karyawan=$this->input->post("id_karyawan");
+		$indnr=$this->input->post("indnr");
 		$id_customer=$this->input->post("id_customer");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
 		// $get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
@@ -176,6 +177,7 @@ class Rencana extends CI_Controller {
 			$in['id_kegiatan'] = "26";
 			$in['id_customer'] = $id_customer;
 			$in['id_karyawan'] = $id_karyawan;
+			$in['indnr'] = $indnr;
 			$in['status_rencana'] = "0";
 			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
 			$in['active'] = "1";
@@ -191,6 +193,7 @@ class Rencana extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		$id_rencana_header=$this->input->post("id_rencana_header");
 		$id_karyawan=$this->input->post("id_karyawan");
+		$indnr=$this->input->post("indnr");
 		$id_customer=$this->input->post("id_customer");
 		$keterangan=$this->input->post("keterangan");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
@@ -204,6 +207,7 @@ class Rencana extends CI_Controller {
 			$in['id_kegiatan'] = "26";
 			$in['id_customer'] = $id_customer;
 			$in['id_karyawan'] = $id_karyawan;
+			$in['indnr'] = $indnr;
 			$in['status_rencana'] = "0";
 			$in['keterangan'] = $keterangan;
 			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
