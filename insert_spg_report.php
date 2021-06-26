@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
 if(isset($_FILES['image_1'])){
 	$mosConfigfoldername = "/"; 
 	$file_path = "./upload/spg_report/".basename($_FILES['image_1']['name']); 

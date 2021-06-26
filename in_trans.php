@@ -11,7 +11,7 @@
 
                     while ($line = fgets($fh)) {
                         if(strlen($line)>228) {
-                            $cn = mysqli_connect(""localhost"","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
+                            $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                             $indnr=substr($line,0,8);
                             $lifnr=substr($line,8,10);
                             $name1=substr($line,18,35);
@@ -44,7 +44,7 @@
                         } 
                     }
 
-                    // $cn1 = mysqli_connect(""localhost"","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
+                    // $cn1 = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                     // $Chostory = "SELECT max(id_history)as mtid FROM trans_index";
                     // $exChstry = mysqli_query($cn1,$Chostory);
                     // while($row =$exChstry-> fetch_assoc()){

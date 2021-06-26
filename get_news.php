@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
 
 	$query=mysqli_query($link,"SELECT * FROM news ORDER BY id_news");
 	if (!$query) {

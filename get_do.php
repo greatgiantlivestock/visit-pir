@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
-// $link = mysqli_connect(""localhost"", "root", "", "homt3248_salestra");
+$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+// $link = mysqli_connect("localhost", "root", "", "homt3248_salestra");
 	$query=mysqli_query($link,"SELECT * FROM do_gantung");
 	if (!$query) {
     	die(mysql_error());

@@ -1,5 +1,5 @@
 <?php
-// $link = mysqli_connect(""localhost"", "root", "", "homt3248_so");
+// $link = mysqli_connect("localhost", "root", "", "homt3248_so");
 // if(isset($_FILES['image_1'])){
 // 	$mosConfigfoldername = "/salestrax"; 
 // 	$file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_1']['name']); 
@@ -47,7 +47,7 @@
 // 		echo json_encode($response);
 // }
 
-$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
 if(isset($_FILES['image_1'])){
 	$mosConfigfoldername = "/"; 
 	// $file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_1']['name']); 

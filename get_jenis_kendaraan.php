@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
-// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
+$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+// $link = mysqli_connect("localhost", "root", "", "absen_android");
 	$query=mysqli_query($link,"SELECT * FROM jenis_kendaraan");
 	if (!$query) {
     	die(mysql_error());

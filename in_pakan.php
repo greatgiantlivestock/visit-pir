@@ -11,7 +11,7 @@
 
                     while ($line = fgets($fh)) {
                         if(strlen($line)>187) {
-                            $cn = mysqli_connect(""localhost"","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
+                            $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                             $INDNR = substr($line,0,8);
                             $PIR_TYPE = substr($line,8,3);
                             $STATUS = substr($line,11,2);

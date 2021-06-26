@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect(""localhost"", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
-// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
+$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+// $link = mysqli_connect("localhost", "root", "", "absen_android");
 if($_GET['id_karyawan']) { 
 	$id_karyawan = $_GET['id_karyawan'];
 	$query=mysqli_query($link,"SELECT trd.* FROM trx_rencana_detail trd JOIN trx_rencana_master trm ON trd.id_rencana_header=trm.id_rencana_header 

@@ -1,6 +1,6 @@
 <?php
 	$name1 = $_GET['id_user'];
-	$link = mysqli_connect(""localhost"", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+	$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
 	$query=mysqli_query($link,"SELECT mp.* FROM mst_pakan mp JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,veraa_user FROM trans_index GROUP BY lifnr) AS dt1 ON dt1.indnr=mp.indnr JOIN mst_user mu ON mu.nama_karyawan=dt1.veraa_user WHERE id_user='$name1'");
 	if (!$query) {
     	die(mysql_error());
