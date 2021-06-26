@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
-// $link = mysqli_connect("localhost", "root", "", "absen_android");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
 if($_GET['id_wilayah']) { 
 	$id_wilayah=$_GET['id_wilayah'];
 	$query=mysqli_query($link,"SELECT * from mst_customer WHERE id_wilayah='$id_wilayah' OR id_wilayah='0'");

@@ -29,7 +29,7 @@ date_default_timezone_set('Asia/Bangkok');
 */
 // $config['base_url'] = 'http://110.232.85.37/sales_order/';
 
-$base_url = "http://".$_SERVER['HTTP_HOST'];
+$base_url = "https://".$_SERVER['HTTP_HOST'];
 $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $config['base_url']	= $base_url;
 
@@ -376,7 +376,7 @@ $config['encryption_key'] = '';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'ci_session';
+$config['sess_cookie_name'] = 'ci_session_pir';
 $config['sess_expiration'] = 7200;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;

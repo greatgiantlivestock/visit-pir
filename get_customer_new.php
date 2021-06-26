@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir");
-// $link = mysqli_connect("localhost", "root", "", "absen_android");
+$link = mysqli_connect(""localhost"", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
 // if($_GET['id_wilayah']) { 
 // 	$id_wilayah=$_GET['id_wilayah'];
 		$query=mysqli_query($link,"SELECT * FROM (SELECT lifnr,name1,desa,veraa_user,indnr FROM trans_index GROUP BY indnr

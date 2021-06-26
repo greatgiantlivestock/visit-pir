@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
 
 	
 // 		$id = $_POST['id_staff'];

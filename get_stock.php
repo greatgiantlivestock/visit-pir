@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
-// $link = mysqli_connect("localhost", "root", "", "absen_android");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
 if($_GET['id_rencana_detail']) { 
 	$id_rencana_detail = $_GET['id_rencana_detail'];
 	$query=mysqli_query($link,"SELECT oneone.*, nama_satuan FROM (SELECT cust_filter.*, nama_product,id_satuan FROM (SELECT group_by.* 

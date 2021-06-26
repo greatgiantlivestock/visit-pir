@@ -211,6 +211,24 @@ class App_model extends CI_Model {
 		WHERE id_request='$id' AND delete_id='0' ORDER BY id_detail_request  DESC");
 		return $q;
 	}
+	public function get_pengobatan_sapi($id="") {
+		$q = $this->db->query("SELECT tp.*,nama_obat,trd.indnr,name1,desa FROM trx_pengobatan tp JOIN trx_rencana_detail trd ON tp.id_rencana_detail=trd.id_rencana_detail 
+		JOIN mst_obat mo ON mo.kode_obat=tp.kode_obat JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS petani 
+		ON petani.lifnr=trd.id_customer WHERE status_release=1");
+		return $q;
+	}
+	public function get_pakan_sapi($id="") {
+		$q = $this->db->query("SELECT mp.*,dt1.*,tfp.* FROM mst_pakan mp JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS dt1 
+		ON mp.indnr=dt1.indnr JOIN trx_rencana_detail trd ON trd.indnr=dt1.indnr LEFT JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
+		GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC LIMIT 200");
+		return $q;
+	}
+	public function get_pakan_sapi_keterangan($id="") {
+		$q = $this->db->query("SELECT dt1.*,tfp.* FROM mst_pakan mp JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS dt1 
+		ON mp.indnr=dt1.indnr JOIN trx_rencana_detail trd ON trd.indnr=dt1.indnr JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
+		GROUP BY mp.indnr,created_date,id_feedback ORDER BY mp.created_date DESC LIMIT 200");
+		return $q;
+	}
 	public function get_request_detail_scrapping($id="") {
 		$q = $this->db->query("SELECT * FROM detail_scrapping JOIN satuan ON detail_scrapping.id_satuan = satuan.id_satuan 
 		JOIN mst_product ON mst_product.id_product=detail_scrapping.id_product

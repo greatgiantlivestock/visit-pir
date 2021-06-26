@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_so");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_so");
 if($_GET['id_awo']) { 
 	$id_awo = $_GET['id_awo'];
 	$tanggal1 = $_GET['tanggal1'];

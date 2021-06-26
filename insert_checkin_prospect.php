@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
 if(isset($_FILES['image_1'])){
 	$mosConfigfoldername = "/"; 
 	// $file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/prospect/".basename($_FILES['image_1']['name']); 

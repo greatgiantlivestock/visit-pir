@@ -114,6 +114,9 @@
 			$(function() {
 				var oTable1 = $('#sample-table-2').dataTable();
 			})
+			$(function() {
+				var oTable1 = $('#sample-table-3').dataTable();
+			})
 		</script>
 		<script type="text/javascript">
 			$('.show-details-btn').on('click', function(e) {

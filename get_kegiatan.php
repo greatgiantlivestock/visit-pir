@@ -1,6 +1,6 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
-// $link = mysqli_connect("localhost", "root", "", "absen_android");
+$link = mysqli_connect(""localhost"", "root", "", "homt3248_salestrax");
+// $link = mysqli_connect(""localhost"", "root", "", "absen_android");
 if($_GET['id_karyawan']) { 
 	$id_karyawan = $_GET['id_karyawan'];
 	$query=mysqli_query($link,"SELECT mst_kegiatan.* FROM mst_kegiatan JOIN mst_user 

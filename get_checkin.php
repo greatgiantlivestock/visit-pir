@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir");
+$link = mysqli_connect(""localhost"", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
 if($_GET['id_rencana_detail']) { 
 	$id_rencana_detail = $_GET['id_rencana_detail'];
 	$query=mysqli_query($link,"SELECT * FROM trx_checkin WHERE id_rencana_detail ='$id_rencana_detail'");

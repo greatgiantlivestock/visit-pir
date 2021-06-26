@@ -4,7 +4,7 @@
 		
 		   $_uv_Token=$_POST["Token"];
 
-		   $conn = mysqli_connect("localhost","root","","homt3248_salestrax");
+		   $conn = mysqli_connect(""localhost"","root","","homt3248_salestrax");
 
 		   $q="INSERT INTO fcm (Token) VALUES ( '$_uv_Token') "
               ." ON DUPLICATE KEY UPDATE Token = '$_uv_Token';";
