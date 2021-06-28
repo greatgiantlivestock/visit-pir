@@ -105,7 +105,7 @@
 													<td><?php echo $data['desa']; ?></td>
 													<td><?php echo $data['indnr']; ?></td>
 													<td><?php echo $data['feedback_pakan']; ?></td>
-													<td width="10%"><img style="width:300px;height:150px" src="<?php echo base_url()?>/upload/pakan/<?php echo $data['foto']; ?>"></td>
+													<td width="10%"><img style="width:200px;height:200px;border-radius: 3.75em;" src="<?php echo base_url()?>/upload/pakan/<?php echo $data['foto']; ?>"></td>
 												</tr>
 								<?php 	$no++; } ?>
 						</table>

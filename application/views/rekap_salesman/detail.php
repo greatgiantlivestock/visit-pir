@@ -48,25 +48,6 @@
 </script>
 <div class="w3-container">
   <h2>Detail Aktifitas Kunjungan PPL</h2>
-
-  <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Fade In Modal</button> -->
-
-  <!-- <div id="id01" class="w3-modal w3-animate-opacity">
-    <div class="w3-modal-content w3-card-4">
-      <header class="w3-container w3-teal"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-button w3-large w3-display-topright">&times;</span>
-        <h2>Modal Header</h2>
-      </header>
-      <div class="w3-container">
-        <p>Some text..</p>
-        <p>Some text..</p>
-      </div>
-      <footer class="w3-container w3-teal">
-        <p>Modal Footer</p>
-      </footer>
-    </div>
-  </div> -->
 </div>
 <div>					    
 	<div class="widget-box" id="widget-box-9">
