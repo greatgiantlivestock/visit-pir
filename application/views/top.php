@@ -205,10 +205,10 @@
 						<i class="fa fa-home"></i>
 						<span class="menu-text">Home</span>
 					</a>
-					<a href="<?php echo base_url(); ?>Customer">
+					<!-- <a href="<?php echo base_url(); ?>Customer">
 						<i class="menu-icon  fa fa-users"></i>
 						<span class="menu-text"> Data Petani </span>
-					</a>
+					</a> -->
 					<a href="<?php echo base_url(); ?>Aproval">
 						<i class="menu-icon  fa fa-check"></i>
 						<span class="menu-text" style="margin-right:28px;"> Aproval Kunjungan <label style="border-radius:25px;height:20px;position:absolute;margin-left:3px;" class="label label-warning"> <?php echo "$count_pengiriman->hitung_pengiriman"; ?> </label></span>
@@ -217,10 +217,10 @@
 						<i class="menu-icon  fa fa-exclamation"></i>
 						<span class="menu-text"> Kunjungan Urgent </span>
 					</a>
-					<a href="<?php echo base_url(); ?>Rencana">
+					<!-- <a href="<?php echo base_url(); ?>Rencana">
 						<i class="menu-icon  fa fa-plus"></i>
 						<span class="menu-text"> Rencana Kunjungan </span>
-					</a>
+					</a> -->
 					<a href="<?php echo base_url(); ?>Report_rencana">
 						<i class="menu-icon  fa fa-crosshairs"></i>
 						<span class="menu-text"> Report Kunjungan </span>
