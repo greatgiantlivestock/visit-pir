@@ -167,7 +167,7 @@ class Rencana extends CI_Controller {
 		$indnr=$this->input->post("indnr");
 		$id_customer=$this->input->post("id_customer");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
-		// $get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		$get_customer = $this->db->query("SELECT name1,desa,veraa_user FROM trans_index WHERE lifnr='$id_customer'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);
@@ -182,6 +182,9 @@ class Rencana extends CI_Controller {
 			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
 			$in['active'] = "1";
 			$in['lock'] = "0";
+			$in['name1'] = $get_customer->name1;
+			$in['desa'] = $get_customer->desa;
+			$in['veraa_user'] = $get_customer->veraa_user;
 			
 			$this->db->insert("trx_rencana_detail",$in);
 			$response = array('error' => 'False');

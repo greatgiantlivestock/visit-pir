@@ -117,8 +117,8 @@ class Aproval extends CI_Controller {
 	public function get_aproval() {
 		$id_rencana_header = $this->input->post("id_rencana_header");
 		$no = 1;	
-		$get = $this->db->query("SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN 
-							(SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr)AS petani ON trd.id_customer=petani.lifnr WHERE urgent='0' AND trm.id_rencana_header='$id_rencana_header'");
+		$get = $this->db->query("SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd 
+							ON trm.id_rencana_header=trd.id_rencana_header WHERE urgent='0' AND trm.id_rencana_header='$id_rencana_header'");
 		echo '<table class="table table-bordered">
 					<thead>
 						<tr>

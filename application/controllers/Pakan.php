@@ -77,8 +77,7 @@ class Pakan extends CI_Controller {
 		// $id_rph = $this->session->userdata("id_awo");
 		$no = 1;	
 		$get = $this->db->query("SELECT tp.*,nama_obat,trd.indnr,name1,desa FROM trx_pengobatan tp JOIN trx_rencana_detail trd ON tp.id_rencana_detail=trd.id_rencana_detail 
-								JOIN mst_obat mo ON mo.kode_obat=tp.kode_obat JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS petani 
-								ON petani.lifnr=trd.id_customer WHERE status_release=0");
+								JOIN mst_obat mo ON mo.kode_obat=tp.kode_obat WHERE status_release=0");
 		echo '<table id="dataTables-example" class="table table-bordered">
 					<thead>
 						<tr>

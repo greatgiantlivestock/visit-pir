@@ -144,8 +144,7 @@
 									$q_tarik_data = $this->db->query("SELECT id_rencana_detail,indnr,name1,desa,SUM(a) AS durasi,COUNT(id_rencana_detail)AS jml FROM
 																	(SELECT trd.id_rencana_detail,trd.indnr,name1,desa,TIMESTAMPDIFF(SECOND, tanggal_checkin,tanggal_checkout)AS a 
 																	FROM trx_rencana_master trm JOIN trx_rencana_detail trd 
-																	ON trm.id_rencana_header=trd.id_rencana_header JOIN (SELECT lifnr,indnr,name1,desa 
-																	FROM trans_index GROUP BY indnr)AS data1 ON data1.lifnr=trd.id_customer JOIN trx_checkin tci 
+																	ON trm.id_rencana_header=trd.id_rencana_header JOIN trx_checkin tci 
 																	ON tci.id_rencana_detail=trd.id_rencana_detail JOIN trx_checkout tco ON tco.id_rencana_detail=trd.id_rencana_detail
 																	JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user
 																	WHERE trm.tanggal_rencana BETWEEN '$tanggal_mulai' AND '$tanggal_sampai'

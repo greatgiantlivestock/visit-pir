@@ -173,13 +173,13 @@ class App_model extends CI_Model {
 	public function get_rencana_detail($id='') {
 		if ($this->session->userdata("id_role")==5){
 			$uid = $this->session->userdata('id_user'); 
-			$q = $this->db->query("SELECT trx_rencana_detail.*,trans_index.name1,desa,nama_karyawan FROM trx_rencana_detail JOIN trans_index
-							ON trx_rencana_detail.id_customer=trans_index.lifnr JOIN mst_user ON mst_user.id_karyawan=trx_rencana_detail.id_karyawan
+			$q = $this->db->query("SELECT trx_rencana_detail.*,name1,desa,nama_karyawan FROM trx_rencana_detail 
+							JOIN mst_user ON mst_user.id_karyawan=trx_rencana_detail.id_karyawan
 							WHERE trx_rencana_detail.id_rencana_header = '$id' AND id_user ='$uid'
 							GROUP BY id_rencana_detail ORDER BY trx_rencana_detail.id_rencana_detail DESC");
 		}else if($this->session->userdata("id_role")==4){
-			$q = $this->db->query("SELECT trx_rencana_detail.*,trans_index.name1,desa,nama_karyawan FROM trx_rencana_detail JOIN trans_index
-							ON trx_rencana_detail.id_customer=trans_index.lifnr JOIN mst_user ON mst_user.id_karyawan=trx_rencana_detail.id_karyawan
+			$q = $this->db->query("SELECT trx_rencana_detail.*,name1,desa,nama_karyawan FROM trx_rencana_detail 
+							JOIN mst_user ON mst_user.id_karyawan=trx_rencana_detail.id_karyawan
 							WHERE trx_rencana_detail.id_rencana_header = '$id' AND mst_user.active='1'
 							GROUP BY id_rencana_detail ORDER BY trx_rencana_detail.id_rencana_detail DESC");
 		}
@@ -213,19 +213,16 @@ class App_model extends CI_Model {
 	}
 	public function get_pengobatan_sapi($id="") {
 		$q = $this->db->query("SELECT tp.*,nama_obat,trd.indnr,name1,desa FROM trx_pengobatan tp JOIN trx_rencana_detail trd ON tp.id_rencana_detail=trd.id_rencana_detail 
-		JOIN mst_obat mo ON mo.kode_obat=tp.kode_obat JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS petani 
-		ON petani.lifnr=trd.id_customer WHERE status_release=1");
+		JOIN mst_obat mo ON mo.kode_obat=tp.kode_obat WHERE status_release=1");
 		return $q;
 	}
 	public function get_pakan_sapi($id="") {
-		$q = $this->db->query("SELECT mp.*,dt1.*,tfp.* FROM mst_pakan mp JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS dt1 
-		ON mp.indnr=dt1.indnr JOIN trx_rencana_detail trd ON trd.indnr=dt1.indnr LEFT JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
+		$q = $this->db->query("SELECT mp.*,trd.*,tfp.* FROM mst_pakan mp JOIN trx_rencana_detail trd ON trd.indnr=mp.indnr LEFT JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
 		GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC LIMIT 200");
 		return $q;
 	}
 	public function get_pakan_sapi_keterangan($id="") {
-		$q = $this->db->query("SELECT dt1.*,tfp.* FROM mst_pakan mp JOIN (SELECT MAX(id_history) AS maxid, indnr,lifnr,name1,desa FROM trans_index GROUP BY lifnr) AS dt1 
-		ON mp.indnr=dt1.indnr JOIN trx_rencana_detail trd ON trd.indnr=dt1.indnr JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
+		$q = $this->db->query("SELECT trd.*,tfp.* FROM mst_pakan mp JOIN trx_rencana_detail trd ON trd.indnr=mp.indnr JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
 		GROUP BY mp.indnr,created_date,id_feedback ORDER BY mp.created_date DESC LIMIT 200");
 		return $q;
 	}
@@ -254,8 +251,7 @@ class App_model extends CI_Model {
 	}
 	public function get_aproval($id="") {
 		$q = $this->db->query("SELECT COUNT(*)AS jml,trm.id_rencana_header,tanggal_penetapan,tanggal_rencana,aproved,veraa_user FROM trx_rencana_master trm 
-							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN (SELECT lifnr,name1,desa,veraa_user 
-							FROM trans_index GROUP BY lifnr)as petani ON trd.id_customer=petani.lifnr WHERE urgent='0' AND trm.active='1' AND aproved='0' GROUP BY trm.id_rencana_header");
+							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE urgent='0' AND trm.active='1' AND aproved='0' GROUP BY trm.id_rencana_header");
 		return $q;
 	}
 	public function get_aproval_urgent($id="") {
@@ -407,8 +403,7 @@ class App_model extends CI_Model {
 		$q = $this->db->query("SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout
 		FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
 		JOIN mst_user mu ON trd.id_karyawan=mu.id_karyawan JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail 
-		JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail JOIN trans_index mc 
-		ON mc.lifnr = ckin.id_customer WHERE trm.id_rencana_header='$id' AND mu.active='1' GROUP BY trd.id_rencana_detail");
+		JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail WHERE trm.id_rencana_header='$id' AND mu.active='1' GROUP BY trd.id_rencana_detail");
 		return $q;
 	}
 	public function get_combo_user_order_list($id="") {
@@ -1940,8 +1935,7 @@ class App_model extends CI_Model {
 		}else if($this->session->userdata("id_role") == 4 || $this->session->userdata("id_role") == 6){
 			$id_user=$this->session->userdata("id_user");
 			$dateFilter = date('Y-m-d');
-				$q = $this->db->query("SELECT * FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN 
-									(SELECT lifnr,name1,desa,veraa_user FROM trans_index GROUP BY lifnr)as petani ON trd.id_customer=petani.lifnr");
+				$q = $this->db->query("SELECT * FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header");
 		}
 		return $q;
 	}
