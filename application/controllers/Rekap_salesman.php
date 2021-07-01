@@ -85,8 +85,8 @@ class rekap_salesman extends CI_Controller {
 		$row = $this->db->query("SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout
 							FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
 							JOIN mst_user mu ON trd.id_karyawan=mu.id_karyawan JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail 
-							JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail JOIN trans_index mc 
-							ON mc.lifnr = ckin.id_customer WHERE trm.id_rencana_header='$id' AND mu.active='1' GROUP BY trd.id_rencana_detail");
+							JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail 
+							WHERE trm.id_rencana_header='$id' AND mu.active='1' GROUP BY trd.id_rencana_detail");
 		$d['detail_visit'] = $row;
 		$d['id'] = $id;
 		$d['judul'] = "Detail Visit";

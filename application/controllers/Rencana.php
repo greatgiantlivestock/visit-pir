@@ -200,7 +200,7 @@ class Rencana extends CI_Controller {
 		$id_customer=$this->input->post("id_customer");
 		$keterangan=$this->input->post("keterangan");
 		$get_id = $this->db->query("SELECT nomor_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
-		// $get_customer = $this->db->query("SELECT kode_customer FROM mst_customer WHERE id_customer='$id_customer'")->row();
+		$get_customer = $this->db->query("SELECT name1,desa,veraa_user FROM trans_index WHERE lifnr='$id_customer'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);
@@ -216,6 +216,9 @@ class Rencana extends CI_Controller {
 			$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
 			$in['active'] = "2";
 			$in['lock'] = "0";
+			$in['name1'] = $get_customer->name1;
+			$in['desa'] = $get_customer->desa;
+			$in['veraa_user'] = $get_customer->veraa_user;
 			
 			$this->db->insert("trx_rencana_detail",$in);
 			$response = array('error' => 'False');
@@ -260,21 +263,27 @@ class Rencana extends CI_Controller {
 				echo json_encode($response);
 			}else{
 				$kodeawal=$get_tp->lifnr;
-				$in_tp['lifnr'] = (int)$kodeawal+1;
+				$lifnr = (int)$kodeawal+1;
+				$in_tp['lifnr'] = $lifnr;
 				$in_tp['name1'] = $nama_customer;
 				$in_tp['desa'] = $desa;
 				$in_tp['veraa_user'] = $get_id->nama;
 				$this->db->insert("trans_indexp",$in_tp);
 
+				$get_customer = $this->db->query("SELECT name1,desa,veraa_user FROM trans_indexp WHERE lifnr='$lifnr'")->row();
+
 				$in['id_rencana_header'] = $id_rencana_header;
 				$in['id_kegiatan'] = "26";
-				$in['id_customer'] = $in_tp['lifnr'];
+				$in['id_customer'] = $lifnr;
 				$in['id_karyawan'] = $id_karyawan;
 				$in['status_rencana'] = "0";
 				$in['keterangan'] = $keterangan;
 				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$in_tp['lifnr'];
 				$in['active'] = "2";
 				$in['lock'] = "0";
+				$in['name1'] = $get_customer->name1;
+				$in['desa'] = $get_customer->desa;
+				$in['veraa_user'] = $get_customer->veraa_user;
 				
 				$this->db->insert("trx_rencana_detail",$in);
 				$response = array('error' => 'False');
