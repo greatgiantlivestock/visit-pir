@@ -16,9 +16,9 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 	}else {
 		$result = mysqli_query($link,"SELECT * FROM(SELECT lifnr,name1,desa,veraa_user,indnr FROM trans_index WHERE id_history in(SELECT MAX(id_history) AS maxid 
 		FROM trans_index) GROUP BY indnr) as dt1 UNION ALL SELECT lifnr,name1,desa,veraa_user,indnr FROM trans_indexp");
-	if (!$result) {
-    die(mysql_error());
-	}
+		if (!$result) {
+			die(mysql_error());
+		}
 		while ($rec =$result-> fetch_assoc()) {
 			$arr[] = array_map('utf8_encode', $rec);
 		}
