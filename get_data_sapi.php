@@ -1,7 +1,6 @@
 <?php
 $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
-	$query=mysqli_query($link,"SELECT id,indnr,lifnr,beastid,vistgid 
-					FROM trans_index WHERE id_history IN(SELECT max(id_history) FROM trans_index) GROUP BY indnr");
+	$query=mysqli_query($link,"SELECT id,indnr,lifnr,beastid,vistgid FROM trans_index");
 	if (!$query) {
     	die(mysql_error());
 	}
@@ -11,8 +10,7 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 		$response = array('error' => 'True');
 		echo json_encode($response);
 	}else {
-		$result = mysqli_query($link,"SELECT id,indnr,lifnr,beastid,vistgid 
-		FROM trans_index WHERE id_history IN(SELECT max(id_history) FROM trans_index) GROUP BY indnr");
+		$result = mysqli_query($link,"SELECT id,indnr,lifnr,beastid,vistgid FROM trans_index");
 	if (!$result) {
     die(mysql_error());
 	}
