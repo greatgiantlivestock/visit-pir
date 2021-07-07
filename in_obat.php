@@ -6,8 +6,6 @@
                 if($trim =="DP"){
                     $fh = fopen('../interface/From/'.$file,'r');
                     $linecount=0;
-                    $linecount1=0;
-                    $linecountgagal=0;
 
                     while ($line = fgets($fh)) {
                         if(strlen($line)>55) {
@@ -24,19 +22,20 @@
                                 $sql = "INSERT INTO mst_obat(kode_obat,nama_obat,unit_obat)
                                         values ('$matnr','$nama','$satuan')";
                                 $result1 = mysqli_query($cn,$sql);
+                                $linecount++;
                             }else if ($jml > 0){
                                 $sql1 = "UPDATE mst_obat SET nama_obat='$nama',unit_obat='$satuan' WHERE kode_obat='$matnr'";
                                 $result = mysqli_query($cn,$sql1);
+                                $linecount++;
                             }else{
                                 echo "ada yang gagal";
-                                $linecountgagal++;
                             }
-                            if ($result) {
-                                $linecount++;
-                            }  
-                            if ($result1) {
-                                $linecount1++;
-                            }   
+                            // if ($result1) {
+                            //     $linecount++;
+                            // }  
+                            // if ($result1) {
+                            //     $linecount1++;
+                            // }   
                         } 
                     }
 
