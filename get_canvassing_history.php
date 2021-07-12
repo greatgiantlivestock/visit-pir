@@ -5,7 +5,7 @@ if($_GET['id_user']) {
 	$tanggal1 = $_GET['tanggal1'];
 	$tanggal2 = $_GET['tanggal2'];
 	$query=mysqli_query($link,"SELECT mc.name1,trm.nomor_rencana,mc.desa,
-					ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+					ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail,ckout.lats,ckout.longs,ckin.foto,mc.indnr FROM trx_checkin ckin JOIN trx_checkout ckout 
 					ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trx_rencana_detail mc 
 					ON mc.id_customer=ckin.id_customer JOIN trx_rencana_master trm 
 					ON trm.id_rencana_header = ckin.id_rencana_header 
@@ -13,7 +13,7 @@ if($_GET['id_user']) {
 					AND '$tanggal2 23:59:59' GROUP BY ckout.id_rencana_detail
 					UNION ALL
 					SELECT mc.name1,trm.nomor_rencana,mc.desa,
-					ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+					ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail,ckout.lats,ckout.longs,ckin.foto,mc.indnr FROM trx_checkin ckin JOIN trx_checkout ckout 
 					ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trans_indexp mc 
 					ON mc.lifnr=ckin.id_customer JOIN trx_rencana_master trm 
 					ON trm.id_rencana_header = ckin.id_rencana_header 
@@ -30,7 +30,7 @@ if($_GET['id_user']) {
 	}
 	else {
 		$result = mysqli_query($link,"SELECT mc.name1,trm.nomor_rencana,mc.desa,
-							ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+							ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail,ckout.lats,ckout.longs,ckin.foto,mc.indnr FROM trx_checkin ckin JOIN trx_checkout ckout 
 							ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trx_rencana_detail mc 
 							ON mc.id_customer=ckin.id_customer JOIN trx_rencana_master trm 
 							ON trm.id_rencana_header = ckin.id_rencana_header 
@@ -38,7 +38,7 @@ if($_GET['id_user']) {
 							AND '$tanggal2 23:59:59' GROUP BY ckout.id_rencana_detail
 							UNION ALL
 							SELECT mc.name1,trm.nomor_rencana,mc.desa,
-							ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail FROM trx_checkin ckin JOIN trx_checkout ckout 
+							ckin.tanggal_checkin,ckout.tanggal_checkout,ckout.id_rencana_detail,ckout.lats,ckout.longs,ckin.foto,mc.indnr FROM trx_checkin ckin JOIN trx_checkout ckout 
 							ON ckin.id_rencana_detail = ckout.id_rencana_detail JOIN trans_indexp mc 
 							ON mc.lifnr=ckin.id_customer JOIN trx_rencana_master trm 
 							ON trm.id_rencana_header = ckin.id_rencana_header 
@@ -50,7 +50,7 @@ if($_GET['id_user']) {
 		while ($rec =$result-> fetch_assoc()) {
 			$arr[] = array_map('utf8_encode', $rec);
 		}
-		echo '{"canvassing":' . json_encode($arr) . '}';
+		echo '{"visit":' . json_encode($arr) . '}';
 	}	
 }
 ?>
