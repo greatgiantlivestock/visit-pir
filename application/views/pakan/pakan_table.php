@@ -79,7 +79,7 @@
 													<td><?php echo $data['desc_pakan']; ?></td>
 													<td><?php echo $data['budget']; ?></td>
 													<td><?php echo $data['terkirim']; ?></td>
-													<td><?php echo $data['sisa']; ?></td>
+													<td><?php echo $data['budget']-$data['terkirim']; ?></td>
 													<td><?php echo $data['std']; ?></td>
 												</tr>
 								<?php 	$no++; } ?>

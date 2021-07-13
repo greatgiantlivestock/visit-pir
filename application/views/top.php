@@ -233,10 +233,10 @@
 						<i class="menu-icon  fa fa-leaf"></i>
 						<span class="menu-text"> Data Pakan </span>
 					</a>
-					<a href="<?php echo base_url(); ?>Release_pengobatan">
+					<!-- <a href="<?php echo base_url(); ?>Release_pengobatan">
 						<i class="menu-icon  fa fa-paper-plane"></i>
 						<span class="menu-text"> Release Pengobatan </span>
-					</a>
+					</a> -->
 					<a onclick="document.getElementById('id01').style.display='block'" href="#" style="background:green">
 						<small>
 							<?php
