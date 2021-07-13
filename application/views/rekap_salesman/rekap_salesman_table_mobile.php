@@ -120,6 +120,7 @@
 	<script type="text/javascript">
         $(document).ready(function() {
             $('#dataTables-example').DataTable({
+				searching:false,
                 responsive: true,
 				bPaginate: false,
                 "order": [[ 0, "desc" ]]
