@@ -84,7 +84,7 @@
 						<?php echo $this->session->flashdata('error'); ?>
 						</div>
 					<?php }?>
-				<table id="dataTables-example" width="100%" class="table table-striped table-bordered table-hover">
+				<table id="sample-table-4" class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th style="background: #22313F;color:#fff;">No</th>									
@@ -146,52 +146,5 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-	</div>
-
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-	<span class="close">&times;</span>
-	<img class="modal-content" id="img01">
-	<div id="caption"></div>
-	</div>
-
-	<div class="modal fade" id="ModalAddShp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Shipping Point</h4>
-            </div>
-            <div class="modal-body">
-            	 	<form  class="form-horizontal"  action="<?php echo base_url(); ?>User/save_shipping_point" method="post"/>	
-						<input id="tipe_shp" type="hidden" name="tipe" readonly>	
-						<input id="id_user_shp" type="hidden" name="id_user" readonly>			
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right"> Shipping Point </label>
-								<div class="col-sm-9">
-									<select class='select_kegiatan' style="width:60%;" name="description">
-										<?php echo $combo_shipping_point_user; ?>
-									</select>
-								</div>
-							</div>	
-
-							<div>												
-								<div class="clearfix form-actions">
-										<div class="col-md-offset-3 col-md-12">
-											<button class="btn btn-success">
-												<i class="ace-icon fa fa-check bigger-110"></i>Simpan
-											</button>
-											<button type="button" class="btn btn-standar" style="margin-left: 40px;" data-dismiss="modal"> 
-												<i class="ace-icon fa fa-undo bigger-110"></i>Batal
-											</button>
-										</div>
-								</div>
-							</div>								
-					</form>			
-			</div>		   
-        </div>
 		</div>
 	</div>

@@ -1687,6 +1687,14 @@ class App_model extends CI_Model {
 			return $q_rekap_biaya;
 		} 
 	}
+	public function get_rekap_salesman_mobile($idDt="") {
+		$q_rekap_biaya = $this->db->query("SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout,realisasi_kegiatan
+				FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
+				JOIN mst_user mu ON trd.id_karyawan=mu.id_karyawan JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail 
+				JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail 
+				WHERE trd.id_rencana_detail='$idDt' AND mu.active='1' GROUP BY trd.id_rencana_detail");
+			return $q_rekap_biaya;
+	}
 	public function get_stock_fisik_history($tanggal1="",$tanggal2="",$id_customer="") {
 	    $wilayah = $this->session->userdata("id_wilayah");
 	    $nama=$this->session->userdata("nama_karyawan");
