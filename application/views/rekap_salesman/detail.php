@@ -91,6 +91,8 @@
 							<th style="background: #22313F;color:#fff;">Kunjungan</th>									
 							<th style="background: #22313F;color:#fff;">Absen</th>									
 							<th style="background: #22313F;color:#fff;">Foto Sapi</th>
+							<th style="background: #22313F;color:#fff;">Pakan</th>
+							<th style="background: #22313F;color:#fff;">Pengobatan</th>
 							<th style="background: #22313F;color:#fff;">Map</th>
 						</tr> 
 					</thead>
@@ -134,7 +136,34 @@
 													<?php echo $rows['keterangan']; ?>
 													<br>
 												<?php }?>
-											</td>											
+											</td>	
+											<td>
+													<?php 
+														$id_rencana_detail = $data['id_rencana_detail'];
+														$qa = $this->db->query("SELECT * FROM trx_feedback_pakan WHERE id_rencana_detail='$id_rencana_detail'"); 
+													?>
+													<?php foreach($qa->result_array() as $rowsPakan) { ?>
+														<a >
+															<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pakan/";echo $rowsPakan['foto']; ?>" border="0"/> <br>
+														</a>	
+														<?php echo $rowsPakan['feedback_pakan']; ?>
+														<br>
+													<?php }?>
+												</td>											
+												<td>
+													<?php 
+														$id_rencana_detail = $data['id_rencana_detail'];
+														$qa = $this->db->query("SELECT nama_obat,qty,unit_obat,tanggal,foto FROM trx_pengobatan tob JOIN mst_obat mo ON tob.kode_obat=mo.kode_obat WHERE id_rencana_detail='$id_rencana_detail'"); 
+														$qaRow = $this->db->query("SELECT nama_obat,qty,unit_obat,tanggal,foto FROM trx_pengobatan tob JOIN mst_obat mo ON tob.kode_obat=mo.kode_obat WHERE id_rencana_detail='$id_rencana_detail'")->row(); 
+													?>
+													<a>
+														<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pengobatan/";echo $qa->row()->foto; ?>" border="0"/> <br>
+													</a>
+													<?php foreach($qa->result_array() as $rowsObat) { ?>	
+														<?php echo "- "; echo $rowsObat['nama_obat']; echo " "; echo $rowsObat['qty']; echo " "; echo $rowsObat['unit_obat']; ?>
+														<br>
+													<?php }?>
+												</td>										
 											<td>
 												<?php if($data['lats']){?>
 													<?php echo '<iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='.$data['lats'].','.$data['longs'].'&hl=es;z=16&amp;output=embed"></iframe>'?>
