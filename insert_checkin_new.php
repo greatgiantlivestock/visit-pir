@@ -13,14 +13,15 @@ if($_POST['id_rencana_detail']!="0"){
 			$foto1 = $_POST['foto1']; 
 			// $tanggal = date('Y-m-d H-i-s'); 
 			$tanggal = $_POST['tanggal']; 
+			$address = $_POST['address']; 
 			$nomor_checkin = $id_user.date('ymdhis'); 
 			$qDtRcn = "SELECT id_rencana_header,id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'";
 			$ExecQ = mysqli_query($link,$qDtRcn);
 			$rowDT = mysqli_fetch_assoc($ExecQ);
 			$id_customer = $rowDT['id_customer']; 
 			$id_rencana_header = $rowDT['id_rencana_header']; 
-			$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,foto,id_rencana_header,prospect,id_customer) 
-						VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$foto1','$id_rencana_header','0','$id_customer') ";
+			$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,foto,id_rencana_header,prospect,id_customer,alamat_gps) 
+						VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$foto1','$id_rencana_header','0','$id_customer','$address') ";
 			$insert = mysqli_query($link,$query) or die("Error, insert query failed : $query ");
 			
 			$query1 = "UPDATE trx_rencana_detail SET status_rencana='1' WHERE id_rencana_detail='$id_rencana_detail'";
@@ -39,6 +40,7 @@ if($_POST['id_rencana_detail']!="0"){
 			$lats = $_POST['lats']; 
 			$longs = $_POST['longs']; 
 			$tanggal = $_POST['tanggal']; 
+			$address = $_POST['address']; 
 			// $tanggal = date('Y-m-d H-i-s'); 
 			$nomor_checkin = $id_user.date('ymdhis'); 
 			$qDtRcn = "SELECT id_rencana_header,id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'";
@@ -46,8 +48,8 @@ if($_POST['id_rencana_detail']!="0"){
 			$rowDT = mysqli_fetch_assoc($ExecQ);
 			$id_customer = $rowDT['id_customer']; 
 			$id_rencana_header = $rowDT['id_rencana_header']; 
-			$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,id_rencana_header,prospect,id_customer) 
-						 VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$id_rencana_header','0','$id_customer') ";
+			$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,id_rencana_header,prospect,id_customer,alamat_gps) 
+						 VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$id_rencana_header','0','$id_customer','$address') ";
 			$insert = mysqli_query($link,$query) or die("Error, insert query failed : $query ");
 			
 			$query1 = "UPDATE trx_rencana_detail SET status_rencana='1' WHERE id_rencana_detail='$id_rencana_detail'";
@@ -67,6 +69,7 @@ if($_POST['id_rencana_detail']!="0"){
 		$lats = $_POST['lats']; 
 		$longs = $_POST['longs']; 
 		$tanggal = $_POST['tanggal']; 
+		$address = $_POST['address']; 
 		// $tanggal = date('Y-m-d H-i-s'); 
 		$nomor_checkin = $id_user.date('ymdhis'); 
 		$qDtRcn = "SELECT id_rencana_header,id_customer FROM trx_rencana_detail WHERE id_rencana_detail='$id_rencana_detail'";
@@ -74,8 +77,8 @@ if($_POST['id_rencana_detail']!="0"){
         $rowDT = mysqli_fetch_assoc($ExecQ);
 		$id_customer = $rowDT['id_customer']; 
 		$id_rencana_header = $rowDT['id_rencana_header']; 
-		$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,id_rencana_header,prospect,id_customer) 
-					 VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$id_rencana_header','0','$id_customer') ";
+		$query = "INSERT INTO trx_checkin (tanggal_checkin,nomor_checkin,id_user,id_rencana_detail,kode_customer,lats,longs,id_rencana_header,prospect,id_customer,alamat_gps) 
+					 VALUES ('$tanggal','$nomor_checkin','$id_user','$id_rencana_detail','$id_customer','$lats','$longs','$id_rencana_header','0','$id_customer','$address') ";
 		$insert = mysqli_query($link,$query) or die("Error, insert query failed : $query ");
         
 		$query1 = "UPDATE trx_rencana_detail SET status_rencana='1' WHERE id_rencana_detail='$id_rencana_detail'";
