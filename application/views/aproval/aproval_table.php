@@ -1,6 +1,9 @@
 <html> 
     <script>
         $(document).ready(function() {
+			$(document).on("click", "#checkAll", function () { 
+				$('.check').prop('checked', this.checked);
+			});
             $('#dataTables-example').DataTable({
                 responsive: true,
                 "order": [[ 0, "desc" ]]
