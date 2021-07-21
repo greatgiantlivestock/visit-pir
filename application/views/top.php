@@ -199,7 +199,7 @@
 				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 			</div>
 		<?php }else if($this->session->userdata("id_role")==4){
-			$count_pengiriman = $this->db->query("SELECT COUNT(*) AS hitung_pengiriman FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE aproved='0'")->row();?>
+			$count_pengiriman = $this->db->query("SELECT COUNT(*) AS hitung_pengiriman FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE aproved='0' OR trd.active=1")->row();?>
 				<div class="topnav" id="myTopnav" style="background: linear-gradient(to right, #0B5345 0%, #1A5276 50%, #4A235A  100%);">
 					<a href="<?php echo base_url(); ?>dashboard">
 						<i class="fa fa-home"></i>

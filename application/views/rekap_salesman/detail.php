@@ -157,7 +157,9 @@
 														$qaRow = $this->db->query("SELECT nama_obat,qty,unit_obat,tanggal,foto FROM trx_pengobatan tob JOIN mst_obat mo ON tob.kode_obat=mo.kode_obat WHERE id_rencana_detail='$id_rencana_detail'")->row(); 
 													?>
 													<a>
-														<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pengobatan/";echo $qa->row()->foto; ?>" border="0"/> <br>
+														<?php if(isset($qa->row()->foto)){?>
+															<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pengobatan/";echo $qa->row()->foto; ?>" border="0"/> <br>
+														<?php }?>
 													</a>
 													<?php foreach($qa->result_array() as $rowsObat) { ?>	
 														<?php echo "- "; echo $rowsObat['nama_obat']; echo " "; echo $rowsObat['qty']; echo " "; echo $rowsObat['unit_obat']; ?>
