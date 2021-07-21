@@ -121,7 +121,15 @@
 														</a>
 														<br>
 												<?php }?>
+												<?php echo $data['alamat_gps']; ?>
+												<br>
+												<?php echo $data['tanggal_checkin']; ?>
+												<br>
+												<?php echo $data['alamat_gps']; ?>
+												<br>
 												<?php echo $data['tanggal_checkout']; ?>
+												<br>
+												<?php echo $data['realisasi_kegiatan']; ?>
 											</td>						
 											<td>
 												<?php 
@@ -133,6 +141,7 @@
 														href="<?php echo base_url(); ?>Rekap_salesman/downloadDisplay/<?php echo $rows['foto']; ?>">
 														<img style="width:200px; height:200px"; id="rotater1" onclick="rotate1(this)" src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
 													</a>	
+													<?php echo $rows['eartag']; echo "<br>" ?>
 													<?php echo $rows['keterangan']; ?>
 													<br>
 												<?php }?>

@@ -83,7 +83,7 @@ class rekap_salesman extends CI_Controller {
 		// 					LEFT JOIN md_kompetitor ON trd.id_rencana_detail=md_kompetitor.id_rencana_detail 
 		// 					WHERE trm.id_rencana_header='$id'");
 		$row = $this->db->query("
-		SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout
+		SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout,realisasi_kegiatan
 							FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
 							JOIN mst_user mu ON trd.id_karyawan=mu.id_karyawan JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail 
 							JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail 
