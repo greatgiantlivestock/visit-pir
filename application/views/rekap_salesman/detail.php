@@ -114,6 +114,7 @@
 												<?php echo $data['tanggal_checkout']; ?>
 											</td>						
 											<td>
+												<?php echo "Detail Checkin : ";echo "<br>";?>
 												<?php if($data['foto']){?>
 														<a  
 															href="#">
@@ -121,13 +122,14 @@
 														</a>
 														<br>
 												<?php }?>
-												<?php echo "detail Checkin : "; echo "<br>"; echo $data['alamat_gps']; ?>
+												<?php echo "<br>"; echo $data['alamat_gps']; ?>
 												<br>
 												<?php echo $data['tanggal_checkin']; ?>
 												<br>
+												<?php echo "Detail Checkout : ";echo "<br>";?>
 												<?php echo $data['alamat_gps']; ?>
 												<br>
-												<?php  echo "<br>"; echo $data['tanggal_checkout']; ?>
+												<?php  echo $data['tanggal_checkout']; ?>
 												<br>
 												<?php echo $data['realisasi_kegiatan']; ?>
 											</td>						

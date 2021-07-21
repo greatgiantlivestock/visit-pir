@@ -112,6 +112,7 @@
 												<?php echo $data['tanggal_checkout']; ?>
 											</td>						
 											<td>
+												<?php echo "Detail Checkin : ";echo "<br>";?>
 												<?php if($data['foto']){?>
 														<a  
 															href="#">
@@ -123,6 +124,7 @@
 												<br>
 												<?php echo $data['tanggal_checkin']; ?>
 												<br>
+												<?php echo "Detail Checkin : ";echo "<br>";?>
 												<?php echo $data['alamat_gps']; ?>
 												<br>
 												<?php echo $data['tanggal_checkout']; ?>
