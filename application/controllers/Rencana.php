@@ -255,12 +255,14 @@ class Rencana extends CI_Controller {
 		}else{
 			$get_tp = $this->db->query("SELECT count(*) as jml,max(lifnr) as lifnr FROM trans_indexp")->row();
 			if($get_tp->jml==0){
-				$kodeawal = 99900000;
+				$kodeawal = 99900001;
 				$in_tp['lifnr'] = $kodeawal;
 				$in_tp['name1'] = $nama_customer;
 				$in_tp['desa'] = $desa;
 				$in_tp['veraa_user'] = $get_id->nama;
 				$this->db->insert("trans_indexp",$in_tp);
+
+				$get_customer = $this->db->query("SELECT name1,desa,veraa_user FROM trans_indexp WHERE lifnr='$kodeawal'")->row();
 
 				$in['id_rencana_header'] = $id_rencana_header;
 				$in['id_kegiatan'] = "26";
@@ -271,6 +273,9 @@ class Rencana extends CI_Controller {
 				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$kodeawal;
 				$in['active'] = "2";
 				$in['lock'] = "0";
+				$in['name1'] = $get_customer->name1;
+				$in['desa'] = $get_customer->desa;
+				$in['veraa_user'] = $get_customer->veraa_user;
 				
 				$this->db->insert("trx_rencana_detail",$in);
 				$response = array('error' => 'False');
