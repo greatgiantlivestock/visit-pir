@@ -519,20 +519,6 @@
 					 $(".modal-body #id_wilayah1").val(id_wilayah).trigger('change');
 				     $(".modal-body #username1").val(username).trigger('change');
 				});
-				$(document).on("click", "#openModalEditProduct", function () {
-				     var id_product = $(this).data('id_product');
-				     var tipe = $(this).data('tipe');
-				     var kode_product = $(this).data('kode_product');
-				     var nama_product = $(this).data('nama_product');
-				     var id_satuan = $(this).data('satuan_product');
-				     var id_plant_group = $(this).data('plant_group');
-				     $(".modal-body #id_product").val(id_product);
-					 $(".modal-body #tipe").val(tipe);
-				     $(".modal-body #kode_product").val(kode_product);
-				     $(".modal-body #nama_product").val(nama_product);
-				     $(".modal-body #satuan").val(id_satuan).trigger('change');
-				     $(".modal-body #plant_group").val(id_plant_group).trigger('change');
-				});
 				$(document).on("click", "#openModalEditShipping", function () {
 				     var id_request = $(this).data('id_request');
 				     var id_status_kirim = $(this).data('id_status_kirim');
@@ -606,20 +592,6 @@
 				$(document).on("click", "#openModalViewPO", function () {
 				     var title = $(this).data('title');
 				     $(".modal-body #title").val(title);
-				});
-				$(document).on("click", "#openModalDeleteProduct", function () {
-				     var id_product = $(this).data('id_product');
-				     var tipe = $(this).data('tipe');
-				     var kode_product = $(this).data('kode_product');
-				     var nama_product = $(this).data('nama_product');
-				     var id_satuan = $(this).data('satuan_product');
-				     var id_plant_group = $(this).data('plant_group');
-				     $(".modal-body #id_product1").val(id_product);
-					 $(".modal-body #tipe1").val(tipe);
-				     $(".modal-body #kode_product1").val(kode_product);
-				     $(".modal-body #nama_product1").val(nama_product);
-				     $(".modal-body #satuan1").val(id_satuan).trigger('change');
-				     $(".modal-body #plant_group1").val(id_plant_group).trigger('change');
 				});
 				$(document).on("click", "#openModalEditDetailOrder", function () {
 				     var id = $(this).data('id');

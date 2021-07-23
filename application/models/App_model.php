@@ -282,13 +282,6 @@ class App_model extends CI_Model {
 							WHERE id_customer !=0 AND mst_customer.id_status_customer =1");
 		return $q;
 	}
-	public function get_master_product() {
-		$q = $this->db->query("SELECT mst_product.*,satuan.nama_satuan,mst_plant_group.plant_group_name FROM mst_product 
-								JOIN satuan ON mst_product.id_satuan = satuan.id_satuan 
-								JOIN mst_plant_group ON mst_plant_group.id_plant_group = mst_product.id_plant_group 
-								ORDER BY mst_product.id_product DESC");
-		return $q;
-	}
 	public function get_master_user() {
 		$q = $this->db->query("SELECT * FROM
 								    mst_user
@@ -969,36 +962,7 @@ class App_model extends CI_Model {
 			$qmushp = $this->db->query("SELECT count(*) as sum_ FROM mst_user_shipping_point WHERE id_user = '$id_user'")->row();
 			$dateFilter = date('Y-m-d');
 			if($qmushp->sum_ != 0){
-				$q_tarik_data = $this->db->query("SELECT * FROM (SELECT data_shipment.* FROM(SELECT cust_ship,description,id_plant_group,alias,no_request,tanggal_request,tanggal_kirim,catatan,id_shipping,no_do,keterangan_do,
-											tanggal_shipping,id_status_kirim,id_detail_request,id_shipping_point,id_request,
-											id_jenis_transaksi,nama_transaksi,nama_status_kirim FROM(SELECT data4.*, nama_status_kirim FROM (
-											SELECT data3.*, id_shipping,no_do,keterangan_do,id_status_kirim,tanggal_shipping FROM (
-											SELECT data2.*,description,id_plant_group,alias,kode_shipping_point FROM(
-											SELECT data1.*, nama_customer AS cust_ship FROM(SELECT rs.*,
-											dr.id_detail_request,dr.id_product,dr.qty,dr.id_satuan,dr.keterangan,
-											dr.id_jenis_transaksi,dr.satuan,dr.id_shipping_point,mu.nama,mu.username,
-											mu.no_hp,mu.id_wilayah,mu.id_karyawan,mu.id_departemen,mu.id_role, 
-											s.nama_satuan,mp.nama_product,mp.kode_product,dpt.nama_departemen,
-											jt.nama_transaksi,nama_customer AS cust_sold FROM request_so rs 
-											JOIN detail_request dr ON rs.id_request = dr.id_request 
-											JOIN mst_user mu ON mu.id_user = rs.id_user
-											JOIN satuan s ON s.id_satuan=dr.id_satuan
-											JOIN mst_product mp ON mp.id_product=dr.id_product
-											JOIN departemen dpt ON dpt.id_departemen=mu.id_departemen
-											JOIN jenis_transaksi jt ON jt.id_jenis_transaksi=dr.id_jenis_transaksi
-											JOIN mst_customer mc ON mc.id_customer = rs.id_customer_sold WHERE rs.delete_id=0 AND dr.delete_id=0) AS data1
-											JOIN mst_customer ON mst_customer.id_customer=data1.id_customer_ship)
-											AS data2 JOIN shipping_point 
-											ON shipping_point.id_shipping_point=data2.id_shipping_point) AS data3
-											JOIN shipping ON shipping.id_detail_request = data3.id_detail_request) AS data4
-											JOIN status_kirim ON status_kirim.id_status_kirim = data4.id_status_kirim)
-											AS data_shipment)
-											AS data_shipment JOIN mst_user_shipping_point
-											ON data_shipment.description = mst_user_shipping_point.description 
-											-- WHERE mst_user_shipping_point.id_user='$id_user'  and id_status_kirim <> 2 untuk menghilangkan yang sudah terkirim
-											WHERE mst_user_shipping_point.id_user='$id_user'
-											GROUP BY no_request,nama_transaksi,cust_ship, DATE(tanggal_request) ORDER BY tanggal_request DESC) as dataNfilter 
-											WHERE tanggal_kirim <= '$dateFilter' and id_status_kirim <> 2");
+				
 			}else{
 				$q_tarik_data = $this->db->query("SELECT cust_ship,description,alias,tanggal_request,tanggal_kirim,catatan,id_shipping,no_do,keterangan_do,
 											tanggal_shipping,id_status_kirim,id_detail_request,no_request,id_shipping_point,id_request,
@@ -2440,19 +2404,6 @@ class App_model extends CI_Model {
 		}
 		return $hasil;
 	}
-	public function get_combo_plant_group($id="") {
-		$hasil = "";
-		$q = $this->db->query("SELECT * FROM mst_plant_group");
-		$hasil .= '<option selected="selected" value>Pilih Plant Group</option>';
-		foreach($q->result() as $h) {
-			if($id == $h->id_plant_group) {
-				$hasil .= '<option value="'.$h->id_plant_group.'" selected="selected">'.$h->plant_group_name.'</option>';
-			} else {
-				$hasil .= '<option value="'.$h->id_plant_group.'">'.$h->plant_group_name.'</option>';
-			}
-		}
-		return $hasil;
-	}
 	public function get_combo_jenis_transaksi($id="") {
 		$hasil = "";
 		$q = $this->db->query("SELECT * FROM jenis_transaksi");
@@ -2779,49 +2730,7 @@ function kabupaten($provId=""){
 	}
 	return $kabupaten;
 }
-function plant_group($id=""){
-	$plant_group="";
-	if($this->session->userdata("id_role")==6){
-		$plant_group .='<option selected="selected" value>Pilih Shipping Point</pilih>';
-		$qshipping_point=$this->db->query("SELECT shipping_point.* FROM shipping_point JOIN mst_user_shipping_point 
-										ON shipping_point.description=mst_user_shipping_point.description WHERE id_plant_group='$id'");
-		foreach ($qshipping_point->result_array() as $data ){
-			$plant_group.= "<option value='$data[id_shipping_point]'>$data[description]</option>";
-		}
-	}else{
-		$plant_group .='<option selected="selected" value>Pilih Shipping Point</pilih>';
-		// $qshipping_point=$this->db->query("SELECT * FROM shipping_point WHERE id_plant_group='$id'");
-		// foreach ($qshipping_point->result_array() as $data ){
-		// 	$plant_group.= "<option value='$data[id_shipping_point]'>$data[description]</option>";
-		// }
-		if($this->session->userdata("id_wilayah")==3020){
-			if($id==4){
-				if($this->session->userdata("id_region")==3){
-					$qshipping_point=$this->db->query("SELECT * FROM shipping_point");
-					foreach ($qshipping_point->result_array() as $data ){
-						$plant_group.= "<option value='$data[id_shipping_point]'>$data[description]</option>";
-					}
-				}else{
-					$qshipping_point=$this->db->query("SELECT * FROM shipping_point WHERE id_shipping_point='19'");
-					foreach ($qshipping_point->result_array() as $data ){
-						$plant_group.= '<option value="'.$data[id_shipping_point].'" selected="selected">'.$data[description].'</option>';
-					}
-				}
-			}else{
-				$qshipping_point=$this->db->query("SELECT * FROM shipping_point");
-				foreach ($qshipping_point->result_array() as $data ){
-					$plant_group.= "<option value='$data[id_shipping_point]'>$data[description]</option>";
-				}
-			}
-		}else{
-			$qshipping_point=$this->db->query("SELECT * FROM shipping_point");
-			foreach ($qshipping_point->result_array() as $data ){
-				$plant_group.= "<option value='$data[id_shipping_point]'>$data[description]</option>";
-			}
-		}
-	}
-	return $plant_group;
-}
+
 function kecamatan($kabId){
 	$qid_wilayah=$this->db->query("SELECT id_wilayah FROM mst_kegiatan WHERE id_kegiatan='$kabId'")->row();
 	$id_wilayah_=$qid_wilayah->id_wilayah;
