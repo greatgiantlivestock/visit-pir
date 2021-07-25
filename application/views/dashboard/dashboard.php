@@ -110,7 +110,7 @@
                 foreach($dataCall->result_array() as $data){?>
                 <tr>
                   <td style="width: 10%"> <?php echo $no;?></td>
-                  <td style="width: 20%"> <?php echo $data['veraa_user'];?></td>
+                  <td style="width: 20%"> <?php echo $data['nama'];?></td>
                   <td style="width: 30%"> <?php echo $data['name1'];?></td>
                   <td style="width: 20%"> <?php echo $data['desa'];?></td>
                   <td style="width: 10%"> <?php echo $data['tanggal_rencana'];?></td>
