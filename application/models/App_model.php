@@ -1905,7 +1905,7 @@ class App_model extends CI_Model {
 		}else if($this->session->userdata("id_role") == 4 || $this->session->userdata("id_role") == 6){
 			$id_user=$this->session->userdata("id_user");
 			$dateFilter = date('Y-m-d');
-				$q = $this->db->query("SELECT * FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user ON mst_user.id_user=trx_rencana_master.id_user_input_rencana");
+				$q = $this->db->query("SELECT * FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user mu ON mu.id_user=trm.id_user_input_rencana");
 		}
 		return $q;
 	}
