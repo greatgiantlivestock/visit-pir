@@ -47,7 +47,7 @@
 								$no = 1;
 										foreach($customer->result_array() as $data) { ?>
 										<tr>
-											<td><?php echo $data['veraa_user']; ?></td>
+											<td><?php echo $data['nama']; ?></td>
 											<td><?php echo $data['tanggal_rencana']; ?></td>
 											<td><?php echo $data['tanggal_penetapan']; ?></td>
 											<td><?php echo $data['jml']; echo " Petani"; ?></td>
