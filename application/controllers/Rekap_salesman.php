@@ -73,15 +73,6 @@ class rekap_salesman extends CI_Controller {
 		}
 	}
 	public function get_row($id) {
-		// $row = $this->db->query("SELECT trm.*,nama_karyawan,nama_customer,trd.id_customer,status_rencana,active,ckin.*,tanggal_checkout,foto_spg,keterangan_spg,
-		// 					foto_chiller,suhu,foto_display, keterangan_display,foto_kompetitor,	md_kompetitor.keterangan AS keterangan_kompetitor
-		// 					FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
-		// 					JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user JOIN mst_customer mc ON mc.id_customer = trd.id_customer
-		// 					JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail JOIN trx_checkout ckout ON ckin.id_checkin=ckout.id_checkin
-		// 					LEFT JOIN md_aktifitas_spg spg ON trd.id_rencana_detail=spg.id_rencana_detail LEFT JOIN md_chiller 
-		// 					ON trd.id_rencana_detail=md_chiller.id_rencana_detail LEFT JOIN md_display ON trd.id_rencana_detail=md_display.id_rencana_detail 
-		// 					LEFT JOIN md_kompetitor ON trd.id_rencana_detail=md_kompetitor.id_rencana_detail 
-		// 					WHERE trm.id_rencana_header='$id'");
 		$row = $this->db->query("
 		SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout,realisasi_kegiatan,ckout.alamat_gps as alamat_gps1
 							FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
@@ -91,7 +82,6 @@ class rekap_salesman extends CI_Controller {
 		$d['detail_visit'] = $row;
 		$d['id'] = $id;
 		$d['judul'] = "Detail Visit";
-		// $d['combo_shipping_point_user'] = $this->App_model->get_combo_shipping_point_user();
 		$this->load->view('rekap_salesman/detail.php',$d);
 		$this->load->view('bottommobile');
 	}

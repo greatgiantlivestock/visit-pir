@@ -91,7 +91,7 @@
 	background: darken(#f1f3f5, 20%);
 	}
 </style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
+<link rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/jquery.min.js') ?>"></script>
 	<script src="<?php echo base_url('vendor/datatables/js/jquery.dataTables.min.js')?>"></script>
     <script src="<?php echo base_url('vendor/datatables-plugins/dataTables.bootstrap.min.js')?>"></script>
