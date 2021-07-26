@@ -126,37 +126,37 @@
                 "order": [[ 0, "desc" ]]
             });
         });
-	$(function(){
-		$.ajaxSetup({
-			type:"POST",
-			url: "<?php echo base_url('rekap_salesman/ambil_data') ?>",
-			cache: false,
-		});
-		$("#wilayah_").change(function(){
-			var value=$(this).val();
-			if(value != ""){
-				$.ajax({
-					data:{modul:'get_karyawan',nama_wilayah:value},
-					success: function(respond){
-						$("#karyawan_").html(respond);
-					}
-				})
-			}
-		});
-	})
-	function Detail_visit(x){
-			var table = document.getElementById("dataTables-example");
-			var count = x.parentNode.parentNode.rowIndex;
-			var str = table.rows[count].cells[2].innerHTML;
-			var url = '<?php echo base_url('Rekap_salesman/get_row/')?>'+str;
-			$.ajax({
-					type: 'get',
-					url: url,
-					success: function (msg) {
-						$('.modal-dt').html(msg);
-					}
-			});
-		}
+	// $(function(){
+	// 	$.ajaxSetup({
+	// 		type:"POST",
+	// 		url: "<?php echo base_url('rekap_salesman/ambil_data') ?>",
+	// 		cache: false,
+	// 	});
+	// 	$("#wilayah_").change(function(){
+	// 		var value=$(this).val();
+	// 		if(value != ""){
+	// 			$.ajax({
+	// 				data:{modul:'get_karyawan',nama_wilayah:value},
+	// 				success: function(respond){
+	// 					$("#karyawan_").html(respond);
+	// 				}
+	// 			})
+	// 		}
+	// 	});
+	// })
+	// function Detail_visit(x){
+	// 		var table = document.getElementById("dataTables-example");
+	// 		var count = x.parentNode.parentNode.rowIndex;
+	// 		var str = table.rows[count].cells[2].innerHTML;
+	// 		var url = '<?php echo base_url('Rekap_salesman/get_row/')?>'+str;
+	// 		$.ajax({
+	// 				type: 'get',
+	// 				url: url,
+	// 				success: function (msg) {
+	// 					$('.modal-dt').html(msg);
+	// 				}
+	// 		});
+	// 	}
 	</script>
 	<div  id="widget-box-9">
 		<div class="widget-body">
@@ -205,7 +205,7 @@
 													<?php echo "Klik Disini Untuk Lihat Detail";?>
 												</td>						
 												<td>
-													<?php echo "Absensi";?><br>
+													<?php echo "Detail Checkin : ";echo "<br>";?>
 													<?php if($data['foto']){?>
 															<a  
 																href="#">
@@ -213,7 +213,16 @@
 															</a>
 															<br>
 													<?php }?>
-													<?php echo $data['realisasi_kegiatan']; echo " "; echo $data['tanggal_checkout']; ?>
+													<?php echo "<br>"; echo $data['alamat_gps']; ?>
+													<br>
+													<?php echo $data['tanggal_checkin']; ?>
+													<br>
+													<?php echo "Detail Checkout : ";echo "<br>";?>
+													<?php echo $data['alamat_gps1']; ?>
+													<br>
+													<?php  echo $data['tanggal_checkout']; ?>
+													<br>
+													<?php echo $data['realisasi_kegiatan']; ?>
 												</td>						
 												<td>
 													<?php echo "Data Sapi";?><br>
@@ -222,10 +231,12 @@
 														$qa = $this->db->query("SELECT * FROM data_sapi WHERE id_rencana_detail='$id_rencana_detail'"); 
 													?>
 													<?php foreach($qa->result_array() as $rows) { ?>
-														<a  >
-															<img style="width:200px; height:200px"; id="rotater1"  src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
+														<a  
+															href="<?php echo base_url(); ?>Rekap_salesman/downloadDisplay/<?php echo $rows['foto']; ?>">
+															<img style="width:200px; height:200px"; id="rotater1" onclick="rotate1(this)" src="<?php echo base_url(); echo "/upload/data_sapi/";echo $rows['foto']; ?>" border="0"/> <br>
 														</a>	
-														<?php echo $rows['keterangan']; ?>
+														<?php echo "Eartag : "; echo $rows['eartag']; echo "<br>" ?>
+														<?php echo "Keterangan : "; echo $rows['keterangan']; ?>
 														<br>
 													<?php }?>
 												</td>											
@@ -251,7 +262,9 @@
 														$qaRow = $this->db->query("SELECT nama_obat,qty,unit_obat,tanggal,foto FROM trx_pengobatan tob JOIN mst_obat mo ON tob.kode_obat=mo.kode_obat WHERE id_rencana_detail='$id_rencana_detail'")->row(); 
 													?>
 													<a>
-														<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pengobatan/";echo $qa->row()->foto; ?>" border="0"/> <br>
+														<?php if(isset($qa->row()->foto)){?>
+															<img style="width:200px; height:200px"; id="rotater" src="<?php echo base_url(); echo "/upload/pengobatan/";echo $qa->row()->foto; ?>" border="0"/> <br>
+														<?php }?>
 													</a>
 													<?php foreach($qa->result_array() as $rowsObat) { ?>	
 														<?php echo "- "; echo $rowsObat['nama_obat']; echo " "; echo $rowsObat['qty']; echo " "; echo $rowsObat['unit_obat']; ?>

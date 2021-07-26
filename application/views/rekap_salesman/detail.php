@@ -127,7 +127,7 @@
 												<?php echo $data['tanggal_checkin']; ?>
 												<br>
 												<?php echo "Detail Checkout : ";echo "<br>";?>
-												<?php echo $data['alamat_gps']; ?>
+												<?php echo $data['alamat_gps1']; ?>
 												<br>
 												<?php  echo $data['tanggal_checkout']; ?>
 												<br>

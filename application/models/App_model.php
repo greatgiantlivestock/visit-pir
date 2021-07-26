@@ -1652,7 +1652,7 @@ class App_model extends CI_Model {
 		} 
 	}
 	public function get_rekap_salesman_mobile($idDt="") {
-		$q_rekap_biaya = $this->db->query("SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout,realisasi_kegiatan
+		$q_rekap_biaya = $this->db->query("SELECT trm.*,nama_karyawan,name1,desa,trd.id_customer,status_rencana,trd.active,ckin.*,tanggal_checkout,realisasi_kegiatan,ckout.alamat_gps as alamat_gps1
 				FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header = trd.id_rencana_header
 				JOIN mst_user mu ON trd.id_karyawan=mu.id_karyawan JOIN trx_checkin ckin ON trd.id_rencana_detail=ckin.id_rencana_detail 
 				JOIN trx_checkout ckout ON ckout.id_rencana_detail=trd.id_rencana_detail 
