@@ -33,9 +33,9 @@ class Aproval_urgent extends CI_Controller {
 		$id_rencana_header = $this->input->post("id_rencana_header");
 		$no = 1;	
 		$get = $this->db->query("SELECT * FROM(SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm 
-							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header'
+							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user mu ON mu.id_user=trm.id_user_input_rencana WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header'
 							UNION SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,veraa_user,name1,desa FROM trx_rencana_master trm 
-							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header')as data_union");
+							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user mu ON mu.id_user=trm.id_user_input_rencana WHERE urgent='1' AND trm.id_rencana_header='$id_rencana_header')as data_union");
 		echo '<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -47,7 +47,7 @@ class Aproval_urgent extends CI_Controller {
 					<tbody>';
 		foreach($get->result_array() as $data) { 
 					echo '<tr>
-							<td>'.$data['veraa_user'].'</td>
+							<td>'.$data['nama'].'</td>
 							<td>'.$data['name1'].'</td>
 							<td>'.$data['desa'].'</td>
 						  </tr>';

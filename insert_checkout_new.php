@@ -15,13 +15,14 @@ $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit
 		$keterangan = $_POST['keterangan']; 
 		// $tanggal = date('Y-m-d h:i:s'); 
 		$tanggal = $_POST['tanggal']; 
+		$address = $_POST['address']; 
 		$qDtRcn = "SELECT id_checkin FROM trx_checkin WHERE id_rencana_detail='$id_rencana_detail'";
         $ExecQ = mysqli_query($link,$qDtRcn);
         $rowDT = mysqli_fetch_assoc($ExecQ);
 		$id_checkin = $rowDT['id_checkin']; 
         
-		$query = "INSERT INTO trx_checkout (id_checkin,id_user,lats,longs,tanggal_checkout,realisasi_kegiatan,id_rencana_detail) 
-					 VALUES ('$id_checkin','$id_user','$lats','$longs','$tanggal','$keterangan','$id_rencana_detail') ";
+		$query = "INSERT INTO trx_checkout (id_checkin,id_user,lats,longs,tanggal_checkout,realisasi_kegiatan,id_rencana_detail,alamat_gps) 
+					 VALUES ('$id_checkin','$id_user','$lats','$longs','$tanggal','$keterangan','$id_rencana_detail','$address') ";
 		$insert = mysqli_query($link,$query) or die("Error, insert query failed : $query ");
         
 		$query1 = "UPDATE trx_rencana_detail SET status_rencana='2' WHERE id_rencana_detail='$id_rencana_detail'";
