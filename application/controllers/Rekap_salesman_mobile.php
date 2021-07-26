@@ -35,6 +35,6 @@ class rekap_salesman_mobile extends CI_Controller {
 		$this->load->view('top_mobile',$d);
 		$this->load->view('menu');
 		$this->load->view('rekap_salesman/rekap_salesman_table_mobile');
-		$this->load->view('bottommobile');
+		// $this->load->view('bottommobile');
 	}
 }

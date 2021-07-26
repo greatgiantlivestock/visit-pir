@@ -83,7 +83,7 @@ class rekap_salesman extends CI_Controller {
 		$d['id'] = $id;
 		$d['judul'] = "Detail Visit";
 		$this->load->view('rekap_salesman/detail.php',$d);
-		$this->load->view('bottommobile');
+		// $this->load->view('bottommobile');
 	}
 	function downloadCheckin($filename = NULL) {
 		$this->load->helper('download');
