@@ -93,7 +93,7 @@ class rekap_salesman extends CI_Controller {
 		$d['judul'] = "Detail Visit";
 		// $d['combo_shipping_point_user'] = $this->App_model->get_combo_shipping_point_user();
 		$this->load->view('rekap_salesman/detail.php',$d);
-		$this->load->view('bottom');
+		$this->load->view('bottommobile');
 	}
 	function downloadCheckin($filename = NULL) {
 		$this->load->helper('download');
