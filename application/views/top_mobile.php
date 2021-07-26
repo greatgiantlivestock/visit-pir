@@ -6,7 +6,7 @@
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="<?php echo base_url();?>asset/css/w3.css">
-		<link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" />
+		<!-- <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" /> -->
 		<link rel="stylesheet" href="<?php echo base_url();?>asset/css/font-awesome.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>asset/css/ace-fonts.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>asset/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
