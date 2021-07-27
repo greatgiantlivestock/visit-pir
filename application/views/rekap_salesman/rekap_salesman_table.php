@@ -103,6 +103,13 @@
                 "order": [[ 0, "desc" ]]
             });
         });
+        $(document).ready(function() {
+            $('#dataTables-example1').DataTable({
+                responsive: true,
+				bPaginate: false,
+                "order": [[ 0, "desc" ]]
+            });
+        });
 	$(function(){
 		$.ajaxSetup({
 			type:"POST",
