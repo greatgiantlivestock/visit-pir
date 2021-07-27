@@ -42,7 +42,7 @@
     <script src="<?php echo base_url('vendor/datatables-responsive/dataTables.responsive.js')?>"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
-            $('#dataTables-example').DataTable({
+            $('#dataTables-example1').DataTable({
 				searching:false,
                 responsive: true,
 				bPaginate: false,
