@@ -35,21 +35,18 @@
 		to {transform:scale(1)}
 	}
 </style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
-	<script type="text/javascript" src="<?php echo base_url('assets/bootstrap/jquery.min.js') ?>"></script>
-	<script src="<?php echo base_url('vendor/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('vendor/datatables/js/jquery.dataTables.min.js')?>"></script>
     <script src="<?php echo base_url('vendor/datatables-plugins/dataTables.bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('vendor/datatables-responsive/dataTables.responsive.js')?>"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
-            $('#dataTables-example1').DataTable({
-				searching:false,
+            $('#dataTables-example7').DataTable({
                 responsive: true,
 				bPaginate: false,
                 "order": [[ 0, "desc" ]]
             });
         });
-	</script>
+</script>
 <script>
 	let rotateAngle = 90;
 	function rotate(image) {
@@ -99,7 +96,7 @@
 						<?php echo $this->session->flashdata('error'); ?>
 						</div>
 					<?php }?>
-				<table id="dataTables-example1" width="100%" class="table table-striped table-bordered table-hover">
+				<table id="dataTables-example7" width="100%" class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th style="background: #22313F;color:#fff;">No</th>									

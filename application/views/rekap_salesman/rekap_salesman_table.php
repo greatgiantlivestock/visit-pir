@@ -103,44 +103,37 @@
                 "order": [[ 0, "desc" ]]
             });
         });
-        $(document).ready(function() {
-            $('#dataTables-example1').DataTable({
-                responsive: true,
-				bPaginate: false,
-                "order": [[ 0, "desc" ]]
-            });
-        });
-	$(function(){
-		$.ajaxSetup({
-			type:"POST",
-			url: "<?php echo base_url('rekap_salesman/ambil_data') ?>",
-			cache: false,
-		});
-		$("#wilayah_").change(function(){
-			var value=$(this).val();
-			if(value != ""){
-				$.ajax({
-					data:{modul:'get_karyawan',nama_wilayah:value},
-					success: function(respond){
-						$("#karyawan_").html(respond);
-					}
-				})
-			}
-		});
-	})
-	function Detail_visit(x){
-			var table = document.getElementById("dataTables-example");
-			var count = x.parentNode.parentNode.rowIndex;
-			var str = table.rows[count].cells[2].innerHTML;
-			var url = '<?php echo base_url('Rekap_salesman/get_row/')?>'+str;
-			$.ajax({
-					type: 'get',
-					url: url,
-					success: function (msg) {
-						$('.modal-dt').html(msg);
-					}
+		$(function(){
+			$.ajaxSetup({
+				type:"POST",
+				url: "<?php echo base_url('rekap_salesman/ambil_data') ?>",
+				cache: false,
 			});
-		}
+			$("#wilayah_").change(function(){
+				var value=$(this).val();
+				if(value != ""){
+					$.ajax({
+						data:{modul:'get_karyawan',nama_wilayah:value},
+						success: function(respond){
+							$("#karyawan_").html(respond);
+						}
+					})
+				}
+			});
+		})
+		function Detail_visit(x){
+				var table = document.getElementById("dataTables-example");
+				var count = x.parentNode.parentNode.rowIndex;
+				var str = table.rows[count].cells[2].innerHTML;
+				var url = '<?php echo base_url('Rekap_salesman/get_row/')?>'+str;
+				$.ajax({
+						type: 'get',
+						url: url,
+						success: function (msg) {
+							$('.modal-dt').html(msg);
+						}
+				});
+			}
 	</script>
 	<div  id="widget-box-9">
 		<!-- <div class="widget-header">
