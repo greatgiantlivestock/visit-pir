@@ -223,7 +223,7 @@
 													<br>
 													<?php  echo $data['tanggal_checkout']; ?>
 													<br>
-													<?php echo $data['realisasi_kegiatan']; ?>
+													<?php echo "Keterangan Checkout : "; echo $data['realisasi_kegiatan']; ?>
 												</td>						
 												<td>
 													<?php echo "Data Sapi";?><br>
