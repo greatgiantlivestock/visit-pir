@@ -108,7 +108,6 @@
 							<th style="background: #22313F;color:#fff;">Map</th>
 						</tr> 
 					</thead>
-
 					<tbody>
 								<?php
 								$no = 1;

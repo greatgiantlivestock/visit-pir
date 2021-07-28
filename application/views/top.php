@@ -175,10 +175,10 @@
 					<i class="menu-icon  fa fa-truck"></i>
 					<span class="menu-text"> Pengiriman </span>
 				</a>
-				<a href="<?php echo base_url(); ?>Report_rencana">
+				<!-- <a href="<?php echo base_url(); ?>Report_rencana">
 					<i class="menu-icon  fa fa-crosshairs"></i>
 					<span class="menu-text"> Report Kunjungan </span>
-				</a>
+				</a> -->
 				<a href="<?php echo base_url(); ?>password">
 					<i class="menu-icon fa fa-key"></i>
 					<span class="menu-text">Password</span>
@@ -221,13 +221,13 @@
 						<i class="menu-icon  fa fa-plus"></i>
 						<span class="menu-text"> Rencana Kunjungan </span>
 					</a> -->
-					<a href="<?php echo base_url(); ?>Report_rencana">
+					<!-- <a href="<?php echo base_url(); ?>Report_rencana">
 						<i class="menu-icon  fa fa-crosshairs"></i>
 						<span class="menu-text"> Report Kunjungan </span>
-					</a>
+					</a> -->
 					<a href="<?php echo base_url(); ?>Rekap_salesman">
 						<i class="menu-icon  fa fa-map-marker"></i>
-						<span class="menu-text"> Rekap Kunjungan </span>
+						<span class="menu-text"> Report Kunjungan </span>
 					</a>
 					<a href="<?php echo base_url(); ?>Pakan">
 						<i class="menu-icon  fa fa-leaf"></i>
@@ -311,13 +311,13 @@
 					<i class="menu-icon  fa fa-plus"></i>
 					<span class="menu-text"> Kunjungan </span>
 				</a>
-				<a href="<?php echo base_url(); ?>Report_rencana">
+				<!-- <a href="<?php echo base_url(); ?>Report_rencana">
 					<i class="menu-icon  fa fa-crosshairs"></i>
 					<span class="menu-text"> Report Kunjungan</span>
-				</a>
+				</a> -->
 				<a href="<?php echo base_url(); ?>Rekap_salesman">
 					<i class="menu-icon  fa fa-map-marker"></i>
-					<span class="menu-text"> Rekap Sales </span>
+					<span class="menu-text"> Report Kunjungan </span>
 				</a>
 				<a onclick="document.getElementById('id02').style.display='block'" href="#" style="background:green">
 					<small>

@@ -201,7 +201,7 @@
 										Karyawan
 									</td>
 									<td>
-										<select style="width:80%;" required <?php echo $color; ?> class="select_customer" name="nama_karyawan">
+										<select style="width:80%;" required <?php echo $color; ?> name="nama_karyawan">
 											<?php echo $combo_karyawan; ?>
 										</select>
 									</td>
