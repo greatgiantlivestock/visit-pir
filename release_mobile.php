@@ -6,7 +6,7 @@
         $noRelease = $rec['jml']+1;
     }
 	$date = date("Ymd_His");
-    $query=mysqli_query($link,"SELECT id_trx_pengobatan,indnr,kode_obat,qty,DATE(tanggal)as tanggal,unit_obat FROM trx_pengobatan tp JOIN trx_rencana_detail trd 
+    $query=mysqli_query($link,"SELECT id_trx_pengobatan,indnr,tp.kode_obat,qty,DATE(tanggal)as tanggal,unit_obat FROM trx_pengobatan tp JOIN trx_rencana_detail trd 
                         ON tp.id_rencana_detail=trd.id_rencana_detail JOIN mst_obat mo on tp.kode_obat=mo.kode_obat WHERE status_release=0");
     
     $sukses = 0;
