@@ -20,6 +20,7 @@
 		$data3b = strpos($rec1['qty'],',');
 		$data4 = str_replace("-","",$rec1['tanggal']);
 		$data5 = $rec1['unit_obat'].'   ';
+		$data5a = substr($data5,0,3);
 		if($data3a==''){
 			if($data3b==''){
 				$data3 = '000000000000000'.$rec1['qty'].'00';
@@ -29,7 +30,7 @@
 		}else{
 			$data3 = '000000000000000'.number_format((float)$rec1['qty'], 2, '', '');
 		}
-		$content = $data1.$data2.substr($data3,-8).substr($data5,0,3).$data4."\n";
+		$content = $data1.$data2.substr($data3,-8).$data5a.$data4."\n";
 		if($data1 != ''){
 			fwrite($fp,$content);
 			fclose($fp);
