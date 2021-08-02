@@ -19,8 +19,8 @@
 		$data3a = strpos($rec1['qty'],'.');
 		$data3b = strpos($rec1['qty'],',');
 		$data4 = str_replace("-","",$rec1['tanggal']);
-		$data5 = $rec1['unit_obat'].'   ';
-		$data5a = substr($data5,0,3);
+		$data5 = $rec1['unit_obat'];
+		$data5a = substr($data5,0,3)."   ";
 		if($data3a==''){
 			if($data3b==''){
 				$data3 = '000000000000000'.$rec1['qty'].'00';
