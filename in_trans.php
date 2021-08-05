@@ -3,7 +3,7 @@
         while (false !== ($file = readdir($folder))) {
             if ($file != "." && $file != "..") {
                 $trim = substr($file,0,2);
-                if($trim =="VP"){
+                if($trim =="PR"){
                     $fh = fopen('../interface/Backup/'.$file,'r');
                     $linecount=0;
                     $id_history=0;
