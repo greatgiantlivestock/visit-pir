@@ -1,10 +1,10 @@
 <?php
-    if ($folder = opendir('../interface/From/')) {
+    if ($folder = opendir('../interface/Backup/')) {
         while (false !== ($file = readdir($folder))) {
             if ($file != "." && $file != "..") {
                 $trim = substr($file,0,2);
-                if($trim =="VP"){
-                    $fh = fopen('../interface/From/'.$file,'r');
+                if($trim =="PR"){
+                    $fh = fopen('../interface/Backup/'.$file,'r');
                     $linecount=0;
                     $id_history=0;
                     // $linecountgagal=0;
@@ -56,7 +56,7 @@
 
                     if(!$linecount==0){
                         echo "success";
-                        $sebelum = "../interface/From/".$file;
+                        $sebelum = "../interface/Backup/".$file;
                         $sesudah = "../interface/Backup2/".$file;
                         echo copy($sebelum, $sesudah);
 
