@@ -251,7 +251,8 @@ class App_model extends CI_Model {
 	}
 	public function get_aproval($id="") {
 		$q = $this->db->query("SELECT COUNT(*)AS jml,trm.id_rencana_header,tanggal_penetapan,tanggal_rencana,aproved,veraa_user FROM trx_rencana_master trm 
-							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE urgent='0' AND trm.active='1' AND trd.active=1 AND aproved='0' OR trd.active=1 GROUP BY trm.id_rencana_header");
+							JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header 
+							JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user WHERE urgent='0' AND trm.active='1' AND trd.active=1 AND aproved='0' OR trd.active=1 GROUP BY trm.id_rencana_header");
 		return $q;
 	}
 	public function get_aproval_urgent($id="") {
