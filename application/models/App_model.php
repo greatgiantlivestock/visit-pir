@@ -217,8 +217,9 @@ class App_model extends CI_Model {
 		return $q;
 	}
 	public function get_pakan_sapi($id="") {
-		$q = $this->db->query("SELECT mp.*,trd.*,tfp.* FROM mst_pakan mp JOIN trx_rencana_detail trd ON trd.indnr=mp.indnr LEFT JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
-		GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC LIMIT 200");
+		// $q = $this->db->query("SELECT mp.*,trd.*,tfp.* FROM mst_pakan mp JOIN trx_rencana_detail trd ON trd.indnr=mp.indnr LEFT JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
+		// GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC LIMIT 200");
+		$q = $this->db->query("SELECT mp.* FROM mst_pakan mp JOIN trans_index ti ON mp.indnr=ti.indnr GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC");
 		return $q;
 	}
 	public function get_pakan_sapi_keterangan($id="") {
