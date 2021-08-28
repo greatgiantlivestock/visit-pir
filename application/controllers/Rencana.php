@@ -207,7 +207,7 @@ class Rencana extends CI_Controller {
 				$in['indnr'] = $indnr;
 				$in['status_rencana'] = "0";
 				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$id_customer;
-				$in['active'] = "1";
+				$in['active'] = "2";
 				$in['lock'] = "0";
 				$in['name1'] = $get_customer->name1;
 				$in['desa'] = $get_customer->desa;
