@@ -221,10 +221,10 @@
 						<i class="menu-icon  fa fa-plus"></i>
 						<span class="menu-text"> Rencana Kunjungan </span>
 					</a> -->
-					<!-- <a href="<?php echo base_url(); ?>Report_rencana">
+					<a href="<?php echo base_url(); ?>Report_rencana">
 						<i class="menu-icon  fa fa-crosshairs"></i>
-						<span class="menu-text"> Report Kunjungan </span>
-					</a> -->
+						<span class="menu-text"> History Visit </span>
+					</a>
 					<a href="<?php echo base_url(); ?>Rekap_salesman">
 						<i class="menu-icon  fa fa-map-marker"></i>
 						<span class="menu-text"> Report Kunjungan </span>

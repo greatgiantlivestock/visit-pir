@@ -138,6 +138,7 @@ class Rencana extends CI_Controller {
 		$in['id_user_input_rencana'] = $this->input->post("id_user");
 		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
 		$in['active'] = "1";
+		$in['aproved'] = "1";
 		
 		$this->db->insert("trx_rencana_master",$in);
 		
@@ -156,6 +157,29 @@ class Rencana extends CI_Controller {
 		// 	$in1['qty'] = $data_penjualan->qty-$qty1;
 		// }
 		// $this->db->insert("stock_customer",$in1);
+		$response = array('error' => 'False');
+		echo json_encode($response);	
+	}
+
+	public function create_header_urgent() {
+		date_default_timezone_set('Asia/Jakarta');
+		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
+												JOIN trx_rencana_master ON proses_lama.id_rencana_header=trx_rencana_master.id_rencana_header")->row();
+		if($get_id == null){
+			$no_akhir = "U0000000000.000";
+		}else{ 
+			$no_akhir = $get_id->nomor_rencana;
+		}
+		$tanggal = "U".$this->input->post("id_user").date('ymd')."."; 
+		$in['tanggal_penetapan'] = date('Y-m-d');
+		$in['tanggal_rencana'] = $this->input->post("date_from");
+		$in['keterangan'] = $this->input->post("keterangan");
+		$in['id_user_input_rencana'] = $this->input->post("id_user");
+		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
+		$in['active'] = "1";
+		$in['urgent'] = "1";
+		
+		$this->db->insert("trx_rencana_master",$in);
 		$response = array('error' => 'False');
 		echo json_encode($response);	
 	}
@@ -309,30 +333,6 @@ class Rencana extends CI_Controller {
 				echo json_encode($response);
 			}
 		}	
-	}
-
-	public function create_header_urgent() {
-		date_default_timezone_set('Asia/Jakarta');
-		$get_id = $this->db->query("SELECT trx_rencana_master.nomor_rencana FROM (SELECT MAX(id_rencana_header) AS id_rencana_header FROM trx_rencana_master) AS proses_lama
-												JOIN trx_rencana_master ON proses_lama.id_rencana_header=trx_rencana_master.id_rencana_header")->row();
-		if($get_id == null){
-			$no_akhir = "U0000000000.000";
-		}else{ 
-			$no_akhir = $get_id->nomor_rencana;
-		}
-		$tanggal = "U".$this->input->post("id_user").date('ymd')."."; 
-		$in['tanggal_penetapan'] = date('Y-m-d');
-		$in['tanggal_rencana'] = $this->input->post("date_from");
-		$in['keterangan'] = $this->input->post("keterangan");
-		$in['id_user_input_rencana'] = $this->input->post("id_user");
-		$in['nomor_rencana'] = buatkode($no_akhir, $tanggal, 3);
-		$in['active'] = "1";
-		$in['urgent'] = "1";
-		$in['aproved'] = "1";
-		
-		$this->db->insert("trx_rencana_master",$in);
-		$response = array('error' => 'False');
-		echo json_encode($response);	
 	}
 
 	public function create_header_edit() {
