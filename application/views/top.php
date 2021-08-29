@@ -210,12 +210,12 @@
 						<span class="menu-text"> Data Petani </span>
 					</a> -->
 					<a href="<?php echo base_url(); ?>Aproval">
-						<i class="menu-icon  fa fa-check"></i>
+						<i class="menu-icon  fa fa-exclamation"></i>
 						<span class="menu-text" style="margin-right:28px;"> Aproval Kunjungan <label style="border-radius:25px;height:20px;position:absolute;margin-left:3px;" class="label label-warning"> <?php echo "$count_pengiriman->hitung_pengiriman"; ?> </label></span>
 					</a>
 					<a href="<?php echo base_url(); ?>Aproval_urgent">
-						<i class="menu-icon  fa fa-exclamation"></i>
-						<span class="menu-text"> Kunjungan Urgent </span>
+						<i class="menu-icon  fa fa-check"></i>
+						<span class="menu-text"> Kunjungan Regular </span>
 					</a>
 					<!-- <a href="<?php echo base_url(); ?>Rencana">
 						<i class="menu-icon  fa fa-plus"></i>

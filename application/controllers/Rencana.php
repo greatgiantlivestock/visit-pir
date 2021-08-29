@@ -295,7 +295,7 @@ class Rencana extends CI_Controller {
 				$in['status_rencana'] = "0";
 				$in['keterangan'] = $keterangan;
 				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$kodeawal;
-				$in['active'] = "2";
+				$in['active'] = "1";
 				$in['lock'] = "0";
 				$in['name1'] = $get_customer->name1;
 				$in['desa'] = $get_customer->desa;
@@ -322,7 +322,7 @@ class Rencana extends CI_Controller {
 				$in['status_rencana'] = "0";
 				$in['keterangan'] = $keterangan;
 				$in['nomor_rencana_detail'] = $get_id->nomor_rencana."_".$in_tp['lifnr'];
-				$in['active'] = "2";
+				$in['active'] = "1";
 				$in['lock'] = "0";
 				$in['name1'] = $get_customer->name1;
 				$in['desa'] = $get_customer->desa;
