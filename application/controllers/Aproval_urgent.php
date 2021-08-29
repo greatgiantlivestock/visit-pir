@@ -33,7 +33,7 @@ class Aproval_urgent extends CI_Controller {
 		$id_rencana_header = $this->input->post("id_rencana_header");
 		$no = 1;	
 		$get = $this->db->query("SELECT trm.id_rencana_header,id_rencana_detail,tanggal_rencana,trd.active,nama,name1,desa FROM trx_rencana_master trm JOIN trx_rencana_detail trd 
-								ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user WHERE trd.active=1 and urgent='0' AND trm.id_rencana_header='$id_rencana_header'");
+								ON trm.id_rencana_header=trd.id_rencana_header JOIN mst_user mu ON trm.id_user_input_rencana=mu.id_user WHERE trd.active=2 and urgent='0' AND trm.id_rencana_header='$id_rencana_header'");
 		echo '<table class="table table-bordered">
 					<thead>
 						<tr>
