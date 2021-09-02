@@ -7,11 +7,13 @@ class Report_rencana extends CI_Controller {
 			if($id !=""){
 				$d['judul'] = "Report Rencana";
 				$d['tipe'] = "add";
+				$bulan = $this->session->userdata("bulan");
 				$d['tanggal_mulai'] = $this->input->post("tanggal_mulai");		
 				$d['tanggal_sampai'] = $this->input->post("tanggal_sampai");
 				$d['nama_karyawan'] = $nama_karyawan;
 				$d['karyawan'] = $this->input->post("nama_karyawan");
 				$d['combo_user'] = $this->App_model->get_combo_user_rencana_available($nama_karyawan);
+				$d['combo_bulan'] = $this->App_model->get_combo_bulan($bulan);
 				$d['color'] = '';
 				$d['disable'] = 'disabled';
 				$d['btn_nota'] = '<button class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Lihat Report</button>';
@@ -23,6 +25,7 @@ class Report_rencana extends CI_Controller {
 				$d['nama_karyawan'] = "";
 				$d['karyawan'] = "";
 				$d['combo_user'] = $this->App_model->get_combo_user_rencana_available($nama_karyawan);
+				$d['combo_bulan'] = $this->App_model->get_combo_bulan();
 				$d['color'] = '';
 				$d['disable'] = 'disabled';
 				$d['btn_nota'] = '<button class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Lihat Report</button>';
@@ -35,11 +38,13 @@ class Report_rencana extends CI_Controller {
 			if($id !=""){
 				$d['judul'] = "Report Rencana";
 				$d['tipe'] = "add";
+				$bulan = $this->session->userdata("bulan");
 				$d['tanggal_mulai'] = $this->input->post("tanggal_mulai");		
 				$d['tanggal_sampai'] = $this->input->post("tanggal_sampai");
 				$d['nama_karyawan'] = $this->input->post("nama_karyawan");
 				$d['karyawan'] = $this->input->post("nama_karyawan");
 				$d['combo_user'] = $this->App_model->get_combo_user_rencana_available($this->input->post("nama_karyawan"));
+				$d['combo_bulan'] = $this->App_model->get_combo_bulan($bulan);
 				$d['color'] = '';
 				$d['disable'] = '';
 				$d['btn_nota'] = '<button class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Lihat Report</button>';
@@ -51,6 +56,7 @@ class Report_rencana extends CI_Controller {
 				$d['nama_karyawan'] = "";
 				$d['karyawan'] = "";
 				$d['combo_user'] = $this->App_model->get_combo_user_rencana_available();
+				$d['combo_bulan'] = $this->App_model->get_combo_bulan();
 				$d['color'] = '';
 				$d['disable'] = '';
 				$d['btn_nota'] = '<button class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Lihat Report</button>';

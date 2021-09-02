@@ -2245,6 +2245,19 @@ class App_model extends CI_Model {
 		}
 		return $hasil;
 	}
+	function get_combo_bulan($id=""){
+		$hasil = "";
+		$q = $this->db->query("SELECT * FROM mst_bulan ORDER BY id_bulan ASC");
+		$hasil .= '<option selected="selected" value>Pilih Periode Bulan</option>';
+		foreach($q->result() as $h) {
+			if($id == $h->id_bulan) {
+				$hasil .= '<option value="'.$h->id_bulan.'" selected="selected">'.$h->nama_bulan.'</option>';
+			} else {
+				$hasil .= '<option value="'.$h->id_bulan.'">'.$h->nama_bulan.'</option>';
+			}
+		}
+		return $hasil;
+	}
 	public function get_combo_karyawan_kegiatan($id="") {
 		$hasil = "";
 		$id_role = $this->session->userdata("id_role");

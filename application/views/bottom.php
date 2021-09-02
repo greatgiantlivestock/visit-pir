@@ -726,7 +726,13 @@
 		      		});
 		    	}
 				function exportRealisasiKunjungan(type) {
-		      		$('.table').tableExport({
+		      		$('#dataTables-exampleR1').tableExport({
+						filename: 'Export Realisasi Kunjungan %DD%-%MM%-%YY%',
+						format: type
+		      		});
+		    	}
+				function exportRealisasiKunjunganAll(type) {
+		      		$('#dataTables-example1').tableExport({
 						filename: 'Export Realisasi Kunjungan %DD%-%MM%-%YY%',
 						format: type
 		      		});
