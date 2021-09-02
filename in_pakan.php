@@ -9,7 +9,7 @@
                     $linecount1=0;
                     $linecountgagal=0;
 
-                    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
+                    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
                     $sqlTrc = "TRUNCATE mst_pakan";
                     $execTrc = mysqli_query($cn,$sqlTrc);
 
