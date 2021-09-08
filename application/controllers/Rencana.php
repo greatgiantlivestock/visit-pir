@@ -193,7 +193,7 @@ class Rencana extends CI_Controller {
 		$get_id = $this->db->query("SELECT nomor_rencana,tanggal_rencana FROM trx_rencana_master WHERE id_rencana_header='$id_rencana_header'")->row();
 		$get_customer = $this->db->query("SELECT name1,desa,veraa_user FROM trans_index WHERE lifnr='$id_customer'")->row();
 		$tanggal_rencana = $get_id->tanggal_rencana;
-		$get_val = $this->db->query("SELECT count(*)as jml FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE indnr='$indnr' AND tanggal_rencana='$tanggal_rencana'")->row();
+		$get_val = $this->db->query("SELECT count(*)as jml FROM trx_rencana_master trm JOIN trx_rencana_detail trd ON trm.id_rencana_header=trd.id_rencana_header WHERE indnr='$indnr' AND tanggal_rencana='$tanggal_rencana' AND id_karyawan='$id_karyawan'")->row();
 		if($get_id == null){
 			$response = array('error' => 'True');
 			echo json_encode($response);

@@ -14,7 +14,7 @@
                     $execTrc = mysqli_query($cn,$sqlTrc);
 
                     while ($line = fgets($fh)) {
-                        if(strlen($line)>228) {
+                        if(strlen($line)>100) {
                             $indnr=substr($line,0,8);
                             $lifnr=substr($line,8,10);
                             $name1=substr($line,18,35);
