@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_Visit PIR");
 if($_POST['id_rencana_detail']) { 
 
 	$id_rencana_detail = $_POST['id_rencana_detail'];

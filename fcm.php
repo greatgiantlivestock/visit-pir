@@ -1,5 +1,5 @@
 <?php 
-$conn = mysqli_connect("localhost","root","","homt3248_salestrax");
+$conn = mysqli_connect("localhost","root","","homt3248_Visit PIR");
 $sql = "Select Token From fcm";
 $query = mysqli_query($conn,$sql);
 

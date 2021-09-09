@@ -29,7 +29,7 @@ function send_notification($tokens, $message, $title){
     return $result;
 }
 
-$conn = mysqli_connect("localhost","root","","homt3248_salestrax");
+$conn = mysqli_connect("localhost","root","","homt3248_Visit PIR");
 $sql = "SELECT Token FROM fcm";
 $result = mysqli_query($conn,$sql);
 $tokens=array();

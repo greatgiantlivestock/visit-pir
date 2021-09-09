@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_Visit PIR");
 	$query=mysqli_query($link,"SELECT * FROM mst_product");
 	if (!$query) {
     	die(mysql_error());

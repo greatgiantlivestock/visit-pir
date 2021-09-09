@@ -63,7 +63,7 @@
 						<div style="margin-top:60px;" class="login-container">
 							<div class="center">
 								<h1>
-									<span style="color:#FFF;" id="id-text2"><span class="red"><b>salestrax</b></span></span>
+									<span style="color:#FFF;" id="id-text2"><span class="red"><b>Visit PIR</b></span></span>
 								</h1>
 							</div>
 

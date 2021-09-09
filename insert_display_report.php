@@ -1,23 +1,23 @@
 <?php
 // $link = mysqli_connect("localhost", "root", "", "homt3248_so");
 // if(isset($_FILES['image_1'])){
-// 	$mosConfigfoldername = "/salestrax"; 
+// 	$mosConfigfoldername = "/Visit PIR"; 
 // 	$file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_1']['name']); 
 // 	if (move_uploaded_file($_FILES['image_1']['tmp_name'], $file_path)) { 
 // 		$id_staff = $_POST['id_staff'];
 
 // 		if(isset($_FILES['image_2'])){
-// 			$mosConfigfoldername = "/salestrax";
+// 			$mosConfigfoldername = "/Visit PIR";
 // 			$file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_2']['name']); 
 // 			if(move_uploaded_file($_FILES['image_2']['tmp_name'], $file_path)){
 // 				if(isset($_FILES['image_3'])){
-// 					$mosConfigfoldername = "/salestrax";
+// 					$mosConfigfoldername = "/Visit PIR";
 // 					$file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_3']['name']); 
 // 					move_uploaded_file($_FILES['image_3']['tmp_name'], $file_path); 		
 // 				}
 // 			} 		
 // 		}else if(isset($_FILES['image_3'])){
-// 			$mosConfigfoldername = "/salestrax";
+// 			$mosConfigfoldername = "/Visit PIR";
 // 			$file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_3']['name']); 
 // 			move_uploaded_file($_FILES['image_3']['tmp_name'], $file_path); 		
 // 		}
@@ -47,7 +47,7 @@
 // 		echo json_encode($response);
 // }
 
-$link = mysqli_connect("localhost", "root", "", "homt3248_salestrax");
+$link = mysqli_connect("localhost", "root", "", "homt3248_Visit PIR");
 if(isset($_FILES['image_1'])){
 	$mosConfigfoldername = "/"; 
 	// $file_path = $_SERVER['DOCUMENT_ROOT'] . $mosConfigfoldername . "/upload/display_report/".basename($_FILES['image_1']['name']); 
