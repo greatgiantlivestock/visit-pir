@@ -57,7 +57,6 @@
 						<table id="sample-table-2" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th style="width:50px;">No</th>
 									<th>Petani</th>
 									<th>Lokasi</th>
 									<th>Index</th>
@@ -72,7 +71,6 @@
 								$no = 1;
 								foreach($pakan->result_array() as $data) { ?>
 												<tr>
-													<td><?php echo $no; ?></td>
 													<td><?php echo $data['name1']; ?></td>
 													<td><?php echo $data['desa']; ?></td>
 													<td><?php echo $data['indnr']; ?></td>
