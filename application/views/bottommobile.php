@@ -18,7 +18,12 @@
 		<script src="<?php echo base_url();?>asset/js/ace/ace.searchbox-autocomplete.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				var oTable1 = $('#sample-table-2').dataTable();
+				var oTable1 = $('#sample-table-2').dataTable({
+					searching:true,
+					responsive: true,
+					bPaginate: false,
+					"order": [[ 0, "desc" ]]
+				});
 			})
 			$(function() {
 				var oTable1 = $('#sample-table-3').dataTable();

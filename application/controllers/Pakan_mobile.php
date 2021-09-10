@@ -11,7 +11,7 @@ class Pakan_mobile extends CI_Controller {
 			// $d['pemotongan_sapi_ggl_stts'] = $this->App_model->get_penerimaan_detail_rph2_no_tgl_stts1($id_rph,'','2');	
 			$this->load->view('top_mobile',$d);
 			$this->load->view('menu');
-			$this->load->view('pakan/pakan_table.php');
+			$this->load->view('pakan/pakan_table_mobile.php');
 			$this->load->view('bottommobile');
 		
 	}
