@@ -64,6 +64,7 @@
 									<th>Budget</th>
 									<th>Terkirim</th>
 									<th>Sisa</th>
+									<th width="5%">Std Pemberian (Kg/Hari)</th>
 								</tr>
 							</thead>
 							<?php
@@ -77,6 +78,7 @@
 													<td><?php echo $data['budget']; ?></td>
 													<td><?php echo $data['terkirim']; ?></td>
 													<td><?php echo $data['budget']-$data['terkirim']; ?></td>
+													<td><?php echo $data['std']; ?></td>
 												</tr>
 								<?php 	$no++; } ?>
 						</table>
