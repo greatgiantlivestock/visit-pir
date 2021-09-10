@@ -22,7 +22,7 @@
 					searching:true,
 					responsive: true,
 					bPaginate: false,
-					"order": [[ 0, "desc" ]]
+					"order": [[ 0, "asc" ]]
 				});
 			})
 			$(function() {
