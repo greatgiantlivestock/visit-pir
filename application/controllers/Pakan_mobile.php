@@ -4,20 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pakan_mobile extends CI_Controller {
 
 	public function index() {
-		if($this->session->userdata('id_role') <=4 ) {
 			$id_rph = $this->session->userdata("id_rph");
 			$d['pakan'] = $this->App_model->get_pakan_sapi();
 			$d['pakan_keterangan'] = $this->App_model->get_pakan_sapi_keterangan();
 			$d['judul'] = 'Data Pakan Sapi';	
 			// $d['pemotongan_sapi_ggl_stts'] = $this->App_model->get_penerimaan_detail_rph2_no_tgl_stts1($id_rph,'','2');	
 			$this->load->view('top_mobile',$d);
-			$this->load->view('menu_mobile');
+			$this->load->view('menu');
 			$this->load->view('pakan/pakan_table.php');
 			$this->load->view('bottommobile');
-		}
-		else {
-			redirect("login");
-		}
+		
 	}
 
 	public function get_pengiriman() {
