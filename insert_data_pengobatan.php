@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Bangkok");
-$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
+$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
 if(isset($_FILES['image_pengobatan'])){
 	$mosConfigfoldername = "/"; 
 	$file_path = "./upload/pengobatan/".basename($_FILES['image_pengobatan']['name']); 

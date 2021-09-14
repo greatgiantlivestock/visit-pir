@@ -1,5 +1,5 @@
 <?php
-	$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
+	$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
 	$query=mysqli_query($link,"SELECT * FROM mst_obat");
 	if (!$query) {
     	die(mysql_error());

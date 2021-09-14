@@ -9,7 +9,7 @@
                     $id_history=0;
                     // $linecountgagal=0;
 
-                    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
+                    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                     $sqlTrc = "TRUNCATE trans_index";
                     $execTrc = mysqli_query($cn,$sqlTrc);
 
@@ -47,7 +47,7 @@
                         } 
                     }
 
-                    // $cn1 = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
+                    // $cn1 = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                     // $Chostory = "SELECT max(id_history)as mtid FROM trans_index";
                     // $exChstry = mysqli_query($cn1,$Chostory);
                     // while($row =$exChstry-> fetch_assoc()){

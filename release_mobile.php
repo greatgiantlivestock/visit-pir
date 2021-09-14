@@ -1,6 +1,6 @@
 <?php
     date_default_timezone_set("Asia/Bangkok");
-    $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
+    $link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
     $queryNR=mysqli_query($link,"SELECT max(nomor_release) as jml FROM trx_release");
     while ($rec =$queryNR-> fetch_assoc()) {
         $noRelease = $rec['jml']+1;

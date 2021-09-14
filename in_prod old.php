@@ -11,7 +11,7 @@
 
                     while ($line = fgets($fh)) {
                         if(strlen($line)>70) {
-                            $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
+                            $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");
                             $indnr=substr($line,0,8);
                             $lifnr=substr($line,8,18);
                             $name1=substr($line,18,53);

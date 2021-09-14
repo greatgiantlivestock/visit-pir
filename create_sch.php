@@ -1,5 +1,5 @@
 <?php         
-    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");   
+    $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_visit-pir-dev");   
     $QUser = "SELECT mu.id_user,mu.id_karyawan,mu.nama FROM mst_user mu JOIN trx_rencana_master trm ON mu.id_user=trm.id_user_input_rencana GROUP BY mu.id_user";
     $ResQU = mysqli_query($cn,$QUser);  
     
