@@ -222,6 +222,10 @@ class App_model extends CI_Model {
 		$q = $this->db->query("SELECT * FROM mst_pakan mp JOIN trans_index ti ON mp.indnr=ti.indnr GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC");
 		return $q;
 	}
+	public function get_pakan_sapi_filter($indnr="") {
+		$q = $this->db->query("SELECT mp.indnr,mp.desc_pakan,mp.budget,mp.terkirim,mp.std,ti.name1,ti.desa FROM mst_pakan mp JOIN trans_index ti ON mp.indnr=ti.indnr WHERE mp.indnr='$indnr' GROUP BY mp.indnr,created_date,kode_pakan ORDER BY mp.created_date DESC");
+		return $q;
+	}
 	public function get_pakan_sapi_keterangan($id="") {
 		$q = $this->db->query("SELECT trd.*,tfp.* FROM mst_pakan mp JOIN trx_rencana_detail trd ON trd.indnr=mp.indnr JOIN trx_feedback_pakan tfp ON tfp.id_rencana_detail=trd.id_rencana_detail 
 		GROUP BY mp.indnr,created_date,id_feedback ORDER BY mp.created_date DESC LIMIT 200");
@@ -425,6 +429,19 @@ class App_model extends CI_Model {
 				$hasil .= '<option value="'.$h->nama.'" selected="selected">'.$h->nama_karyawan."  (".$h->nama_wilayah.")".'</option>';
 			} else {
 				$hasil .= '<option value="'.$h->nama.'">'.$h->nama_karyawan."  (".$h->nama_wilayah.")".'</option>';
+			}
+		}
+		return $hasil;
+	}
+	public function get_combo_petani_index($id="") {
+		$hasil = "";
+		$q = $this->db->query("SELECT ti.indnr,ti.name1,ti.desa FROM trans_index ti JOIN mst_pakan mp ON ti.indnr=mp.indnr GROUP BY ti.indnr ORDER BY ti.name1 ASC");
+		$hasil .= '<option selected="selected" value>Pilih Petani</option>';
+		foreach($q->result() as $h) {
+			if($id == $h->indnr) {
+				$hasil .= '<option value="'.$h->indnr.'" selected="selected">'.$h->name1.'</option>';
+			} else {
+				$hasil .= '<option value="'.$h->indnr.'">'.$h->name1.'</option>';
 			}
 		}
 		return $hasil;

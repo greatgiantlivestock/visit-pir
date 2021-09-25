@@ -16,6 +16,8 @@
 		<script src="<?php echo base_url();?>asset/js/ace/ace.widget-box.js"></script>
 		<script src="<?php echo base_url();?>asset/js/ace/ace.widget-on-reload.js"></script>
 		<script src="<?php echo base_url();?>asset/js/ace/ace.searchbox-autocomplete.js"></script>
+		<script src="<?php echo base_url();?>asset/js/select2.js"></script>
+		<script src="<?php echo base_url();?>asset/js/ace/elements.spinner.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				var oTable1 = $('#sample-table-2').dataTable({
@@ -28,4 +30,9 @@
 			$(function() {
 				var oTable1 = $('#sample-table-3').dataTable();
 			})
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			  $(".select_rph").select2();
+			});
 		</script>

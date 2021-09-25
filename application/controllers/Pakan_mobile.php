@@ -5,15 +5,43 @@ class Pakan_mobile extends CI_Controller {
 
 	public function index() {
 			$id_rph = $this->session->userdata("id_rph");
-			$d['pakan'] = $this->App_model->get_pakan_sapi();
-			$d['pakan_keterangan'] = $this->App_model->get_pakan_sapi_keterangan();
-			$d['judul'] = 'Data Pakan Sapi';	
-			// $d['pemotongan_sapi_ggl_stts'] = $this->App_model->get_penerimaan_detail_rph2_no_tgl_stts1($id_rph,'','2');	
+			$d['pakan'] = $this->App_model->get_pakan_sapi_filter();
+			$d['indnr'] = "";
+			$d['desa'] = "";
+			$d['combo_indnr'] = $this->App_model->get_combo_petani_index();
+			$d['judul'] = 'Detail Realisasi Pengiriman Pakan';	
+			$d['btn_nota'] = '<button style="border-radius: 25px;background:rgba(0,0,0,0.2);" class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Cek Pakan</button>';
 			$this->load->view('top_mobile',$d);
 			$this->load->view('menu');
 			$this->load->view('pakan/pakan_table_mobile.php');
-			$this->load->view('bottommobile');
-		
+			$this->load->view('bottom');	
+	}
+
+	function ambil_data(){
+		$modul=$this->input->post('modul');
+		$id=$this->input->post('indnr');
+		$get=$this->db->query("SELECT desa FROM trans_index WHERE indnr = '$id' GROUP BY indnr")->row();
+		$desa= $get->desa;
+		if($modul=="desa"){
+			echo strval($desa);
+		}
+		if($modul=="indnr"){
+			echo strval($id);
+		}
+	}
+
+	public function get_pakan_filter(){
+			$id_rph = $this->session->userdata("id_rph");
+			$d['pakan'] = $this->App_model->get_pakan_sapi_filter($this->input->post("indnr"));
+			$d['indnr'] = $this->input->post("indnr");
+			$d['desa'] = $this->input->post("desa");
+			$d['combo_indnr'] = $this->App_model->get_combo_petani_index($this->input->post("indnr"));
+			$d['judul'] = 'Detail Realisasi Pengiriman Pakan';	
+			$d['btn_nota'] = '<button style="border-radius: 25px;background:rgba(0,0,0,0.2);" class="btn btn-xs btn-primary"><i class="fa fa-search"> </i> Cek Pakan</button>';
+			$this->load->view('top_mobile',$d);
+			$this->load->view('menu');
+			$this->load->view('pakan/pakan_table_mobile.php');
+			$this->load->view('bottom');
 	}
 
 	public function get_pengiriman() {
