@@ -1,6 +1,6 @@
 <?php
 	$name1 = $_GET['id_user'];
-	$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+	$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
 	$query=mysqli_query($link,"SELECT * FROM mst_pakan ORDER BY indnr,pakan_type asc");
 	if (!$query) {
     	die(mysql_error());

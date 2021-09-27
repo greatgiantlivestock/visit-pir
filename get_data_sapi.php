@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
 	$query=mysqli_query($link,"SELECT id,indnr,lifnr,beastid,vistgid FROM trans_index WHERE beastid <>''");
 	if (!$query) {
     	die(mysql_error());

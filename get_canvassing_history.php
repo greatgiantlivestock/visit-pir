@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_visit-pir-dev");
+$link = mysqli_connect("localhost", "u1076725_ms", "moha11mmad", "u1076725_pir_visit");
 if($_GET['id_user']) { 
 	$id_user = $_GET['id_user'];
 	$tanggal1 = $_GET['tanggal1'];
