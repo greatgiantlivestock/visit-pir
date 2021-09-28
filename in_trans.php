@@ -9,7 +9,7 @@
                     $linecountC=0;
                     $id_history=0;
 
-                    $Cline = count(file($fh));
+                    $Cline = count(fgets($fh));
                     echo $Cline;
 
                         // $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
