@@ -9,7 +9,7 @@
                     $id_history=0;
                     // $linecountgagal=0;
 
-                    $lineC = count(file('../interface/Backup/'.$file));
+                    $lineC = count(file($fh));
                     echo $lineC;
                     // $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
                     // $sqlTrc = "TRUNCATE trans_index";
