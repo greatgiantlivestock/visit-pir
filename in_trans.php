@@ -35,7 +35,6 @@
                                 $bredesc=substr($line,173,25);
                                 $catdesc=substr($line,198,30);
                                 $status_pir=substr($line,228,2);
-                                $DATE_CREATED = date("Y-m-d H:i:s");
 
                                 if($id_history==0){
                                     $Chostory = "SELECT max(id_history)as mtid FROM trans_index";
@@ -45,8 +44,8 @@
                                     }
                                 }
                                 
-                                $sql = "INSERT INTO trans_index(id_history,indnr,lifnr,name1,prtype,regdate,desa,veraa_user,beastid,vistgid,lotid,sexdesc,bredesc,catdesc,status_pir,created_at)
-                                        values ($id_history,'$indnr','$lifnr','$name1','$prtype','$regdate','$desa','$veraa_user','$beastid','$vistgid','$lotid','$sexdesc','$bredesc','$catdesc','$status_pir','$DATE_CREATED')";
+                                $sql = "INSERT INTO trans_index(id_history,indnr,lifnr,name1,prtype,regdate,desa,veraa_user,beastid,vistgid,lotid,sexdesc,bredesc,catdesc,status_pir)
+                                        values ($id_history,'$indnr','$lifnr','$name1','$prtype','$regdate','$desa','$veraa_user','$beastid','$vistgid','$lotid','$sexdesc','$bredesc','$catdesc','$status_pir')";
                                 $result = mysqli_query($cn,$sql);
                                 
                                 if ($result) {
