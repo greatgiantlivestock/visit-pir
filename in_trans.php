@@ -9,12 +9,6 @@
                     $linecountC=0;
                     $id_history=0;
 
-                    while ($line = fgets($fh)) {
-                        $linecountC++;
-                    }
-                    echo $linecountC;
-
-                    if($linecountC > 5){
                         $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
                         $sqlTrc = "TRUNCATE trans_index";
                         $execTrc = mysqli_query($cn,$sqlTrc);
@@ -53,7 +47,6 @@
                                 }  
                             } 
                         }
-                    }
 
                     if($linecount > 0){
                         echo "success";
