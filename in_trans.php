@@ -9,8 +9,7 @@
                     $linecountC=0;
                     $id_history=0;
 
-                    $Cline = count(fgets($fh));
-                    echo $Cline;
+                    echo filesize('../interface/Backup/'.$file)." Byte";
 
                         // $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
                         // $sqlTrc = "TRUNCATE trans_index";
