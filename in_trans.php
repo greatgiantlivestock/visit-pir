@@ -58,7 +58,7 @@
                     //     $id_history = $row['mtid']+1; 
                     // }
 
-                    if(!$linecount==0){
+                    if($linecount != 0){
                         echo "success";
                         $sebelum = "../interface/Backup/".$file;
                         $sesudah = "../interface/Backup2/".$file;
