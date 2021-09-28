@@ -9,7 +9,7 @@
                     $id_history=0;
                     // $linecountgagal=0;
 
-                    $lineC = count(file($fh));
+                    $lineC = count(file('../interface/Backup/'.$file));
                     echo $lineC;
                     // $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
                     // $sqlTrc = "TRUNCATE trans_index";
@@ -58,19 +58,19 @@
                     //     $id_history = $row['mtid']+1; 
                     // }
 
-                    if($linecount != 0){
-                        echo "success";
-                        $sebelum = "../interface/Backup/".$file;
-                        $sesudah = "../interface/Backup2/".$file;
-                        echo copy($sebelum, $sesudah);
+                    // if($linecount != 0){
+                    //     echo "success";
+                    //     $sebelum = "../interface/Backup/".$file;
+                    //     $sesudah = "../interface/Backup2/".$file;
+                    //     echo copy($sebelum, $sesudah);
 
-                        if (!copy($sebelum, $sesudah)) {
-                            echo " File gagal dipindahkan di folder backup";
-                        }else{
-                            unlink($sebelum);
-                            echo " File berhasil dipindahkan ke folder backup.";
-                        }
-                    }
+                    //     if (!copy($sebelum, $sesudah)) {
+                    //         echo " File gagal dipindahkan di folder backup";
+                    //     }else{
+                    //         unlink($sebelum);
+                    //         echo " File berhasil dipindahkan ke folder backup.";
+                    //     }
+                    // }
                     fclose($fh);
                 }
             }
