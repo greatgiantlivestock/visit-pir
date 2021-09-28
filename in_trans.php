@@ -6,14 +6,14 @@
                 if($trim =="PR"){
                     $fh = fopen('../interface/Backup/'.$file,'r');
                     $linecount=0;
-                    $linecountC=0;
+                    $linecountC = 0;
                     $id_history=0;
                     // $linecountgagal=0;
 
                     while ($line = fgets($fh)) {
-                        $linecountC++;
-                        echo $linecountC;
+                        $linecountC = $linecountC+1;
                     }
+                    echo $linecountC;
 
                     // if($linecountC > 5){
                     //     $cn = mysqli_connect("localhost","u1076725_ms","moha11mmad","u1076725_pir_visit");
@@ -57,21 +57,21 @@
                     //     }
                     // }
 
-                    if($linecount != 0){
-                        echo "success";
-                        $sebelum = "../interface/Backup/".$file;
-                        $sesudah = "../interface/Backup2/".$file;
-                        echo copy($sebelum, $sesudah);
+                    // if($linecount != 0){
+                    //     echo "success";
+                    //     $sebelum = "../interface/Backup/".$file;
+                    //     $sesudah = "../interface/Backup2/".$file;
+                    //     echo copy($sebelum, $sesudah);
 
-                        if (!copy($sebelum, $sesudah)) {
-                            echo " File gagal dipindahkan di folder backup";
-                        }else{
-                            unlink($sebelum);
-                            echo " File berhasil dipindahkan ke folder backup.";
-                        }
-                    }else{
-                        echo "file tidak di copy";
-                    }
+                    //     if (!copy($sebelum, $sesudah)) {
+                    //         echo " File gagal dipindahkan di folder backup";
+                    //     }else{
+                    //         unlink($sebelum);
+                    //         echo " File berhasil dipindahkan ke folder backup.";
+                    //     }
+                    // }else{
+                    //     echo "file tidak di copy";
+                    // }
                     fclose($fh);
                 }
             }
